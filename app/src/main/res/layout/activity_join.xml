@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@drawable/back_gradient">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:fontFamily="@font/nanumr"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/nanumr"
+        android:text="지금 회원가입을 하여 자신의 퍼스널컬를 함께 알아봐요 !"
+        android:textColor="#fff"
+        android:textSize="12dp" />
+
+    <!--로그인 입력창-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/proflie_round_gray"
+            android:layout_marginTop="50dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create an account"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:fontFamily="@font/nanumr"
+            android:layout_marginTop="120dp"
+            android:layout_marginLeft="39dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in to continue"
+            android:textColor="#818181"
+            android:textSize="12dp"
+            android:layout_marginTop="145dp"
+            android:layout_marginLeft="38dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일"
+            android:textSize="13dp"
+            android:fontFamily="@font/nanumr"
+            android:textColor="#000"
+            android:layout_marginTop="190dp"
+            android:layout_marginLeft="45dp"/>
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="215dp"
+            android:background="@drawable/edit_rectangle"
+            android:textColor="#818181"
+            android:textSize="12.5dp"
+            android:fontFamily="@font/nanumr"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:id="@+id/edtID"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="13dp"
+            android:fontFamily="@font/nanumr"
+            android:textColor="#000"
+            android:layout_marginTop="280dp"
+            android:layout_marginLeft="45dp"/>
+        <EditText
+            android:hint="한글 이름"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="305dp"
+            android:background="@drawable/edit_rectangle"
+            android:textColor="#818181"
+            android:textSize="12.5dp"
+            android:paddingLeft="10dp"
+            android:fontFamily="@font/nanumr"
+            android:id="@+id/edtName"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호"
+            android:textSize="13dp"
+            android:fontFamily="@font/nanumr"
+            android:textColor="#000"
+            android:layout_marginTop="370dp"
+            android:layout_marginLeft="45dp"/>
+
+        <EditText
+            android:hint="비밀번호 6자리 이상"
+            android:id="@+id/edtPW"
+            android:layout_width="320dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="395dp"
+            android:background="@drawable/edit_rectangle"
+            android:textColor="#818181"
+            android:paddingLeft="10dp"
+            android:inputType="textPassword"
+            android:textSize="12.5dp" />
+        <Button
+
+            android:layout_width="320dp"
+            android:layout_height="55dp"
+            android:background="@drawable/login_round_green"
+            android:layout_marginTop="200dp"
+            android:layout_gravity="center"
+            android:text="Get Started !"
+            android:textColor="#fff"
+            android:fontFamily="@font/nanumr"
+            android:id="@+id/btnReg"
+            style="?android:attr/borderlessButtonStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            android:textSize="12dp"
+            android:textColor="#818181"
+            android:layout_marginTop="565dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/joinLogin"/>
+    </FrameLayout>
+
+
+
+</LinearLayout>

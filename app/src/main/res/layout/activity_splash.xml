@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#BA0E2C"
     android:layout_gravity="center"
+    android:background="@drawable/back_gradient"
     tools:context=".SplashActivity">
 
 
@@ -17,20 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="美:도"
+            android:text="Coloroid Love"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="15pt" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:text="작은 도전으로 하루를 바꾼다"
-            android:textSize="7pt"
-            android:textColor="#fff"/>
+            android:fontFamily="@font/nanumr"
+            android:textSize="10pt" />
     </FrameLayout>
 
 </LinearLayout>
