@@ -96,7 +96,7 @@
         <Button
             android:layout_width="320dp"
             android:layout_height="55dp"
-            android:background="@drawable/login_round_green"
+            android:background="@drawable/login_round_orange"
             android:layout_marginTop="200dp"
             android:layout_gravity="center"
             android:text="Sign in"
