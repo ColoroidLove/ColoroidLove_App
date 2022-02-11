@@ -35,5 +35,6 @@ public class JoinActivity extends BaseActivity {
                 gotoClass(LoginActivity.class);
             }
         });
+        
     }
 }
