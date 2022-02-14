@@ -32,5 +32,13 @@ public class LoginActivity extends BaseActivity {
                 gotoClass(JoinActivity.class);
             }
         });
+
+        // 로그인 클릭시 메인 창으로 전환
+        bt_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoClass(MainActivity.class);
+            }
+        });
     }
 }

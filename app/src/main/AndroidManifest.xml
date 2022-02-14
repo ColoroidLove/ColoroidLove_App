@@ -19,11 +19,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
+
         <activity android:name=".JoinActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+
     </application>
 
 </manifest>

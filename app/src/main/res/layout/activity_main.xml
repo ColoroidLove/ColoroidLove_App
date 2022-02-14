@@ -6,17 +6,17 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:background="@drawable/back_gradient">
 
         <TextView
             android:fontFamily="@font/nanumr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="50dp"
             android:text="What's\nYour\nColoroid\nLove?"
-            android:textSize="35dp" />
+            android:textSize="30dp" />
 
         <Button
             android:fontFamily="@font/nanumr"
@@ -24,10 +24,10 @@
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="230dp"
+            android:layout_marginTop="215dp"
             android:background="@drawable/login_round_white"
             android:gravity="center"
-            android:text="S T A R T"
+            android:text="시작하기"
             android:textSize="20dp" />
 
     </FrameLayout>
@@ -46,6 +46,7 @@
             android:textSize="25dp" />
 
         <ListView
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
