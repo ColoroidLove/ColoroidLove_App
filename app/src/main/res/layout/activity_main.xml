@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/back_gradient">
 
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/back_gradient">
+        android:layout_height="300dp">
 
         <TextView
             android:fontFamily="@font/nanumr"
@@ -28,14 +28,15 @@
             android:background="@drawable/login_round_white"
             android:gravity="center"
             android:text="시작하기"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
 
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/round_white">
         <TextView
             android:layout_marginTop="10dp"
             android:gravity="center"
@@ -43,11 +44,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Now User's Coloroid Love"
-            android:textSize="25dp" />
+            android:textSize="20dp"
+            android:paddingTop="20dp"/>
 
         <ListView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"/>
     </LinearLayout>
 </LinearLayout>
