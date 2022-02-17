@@ -28,5 +28,17 @@
         android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/gongme"/>
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/cmedium"/>
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/cmediumltalic"/>
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/csemibold"/>
 
 </font-family>
