@@ -3,6 +3,7 @@ package com.example.coloroidlove;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String[] name={"박종성여친"};
     String[] result={"여름뮤트"};
     Integer[] polar={R.drawable.polar};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
