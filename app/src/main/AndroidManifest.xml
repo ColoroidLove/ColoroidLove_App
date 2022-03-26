@@ -23,6 +23,7 @@
         <activity android:name=".JoinActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Testnotice"></activity>
 
     </application>
 
