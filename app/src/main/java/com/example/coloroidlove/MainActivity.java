@@ -3,19 +3,19 @@ package com.example.coloroidlove;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.hardware.Camera;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     ListView cList;
     ColoroidAdapter cAdapter;
     ArrayList<Coloroid> cArray;
     Coloroid cItem;
-
+    Button btn_start;
 
     //초기 데이터
     Integer[] profile={R.drawable.profile};
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         cList=findViewById(R.id.list);
         cArray=new ArrayList<Coloroid>();
+        btn_start = findViewById(R.id.btn_start);
 
         for(int i=0; i<profile.length; i++){
             cItem=new Coloroid(ContextCompat.getDrawable(this,polar[i]),name[i],result[i],
