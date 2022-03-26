@@ -12,7 +12,10 @@
 * Coloroid Love 웹페이지
     * Coloroid Love의 간단한 소개를 제공합니다.
 
-### 실행 화면
+### Built With
+* Spring - Back-end Development
+* HTML/CSS/JavaScript - Front-end Development
+* Android Studio (Java) - App Development
 
 <!-- > ![메인화면](https://raw.githubusercontent.com/areyh817/2022appandme_website/main/prototype/main.png)
 **메인화면**
