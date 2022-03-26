@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity {
             // '아래 네 버튼'처럼 바로 연결하면 일회성으로 사용하기 편함.
             // *주의할 점: findViewById()를 쓸 때는 -> 앞에 반드시 다이얼로그 이름을 붙여야 한다.
 
-            // 아니오 버튼
+            // 시작
             Button noBtn = dilaog01.findViewById(R.id.noBtn);
             noBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity {
                     dilaog01.dismiss(); // 다이얼로그 닫기
                 }
             });
-            // 네 버튼
+            // 취소
             dilaog01.findViewById(R.id.yesBtn).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
