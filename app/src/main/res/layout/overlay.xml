@@ -6,10 +6,12 @@
     android:gravity="bottom">
 
     <LinearLayout
-        android:background="@color/purple_700"
-        android:gravity="center"
+        android:id="@+id/backcolor"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="250dp"
+        android:background="@color/purple_700"
+        android:gravity="center">
+
         <Button
             android:id="@+id/btnYes"
             android:layout_width="80dp"

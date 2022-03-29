@@ -3,7 +3,8 @@ package com.example.coloroidlove;
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;
         import androidx.annotation.NonNull;
         import android.Manifest;
-        import android.graphics.PixelFormat;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
         import android.hardware.Camera;
         import android.os.Bundle;
         import android.view.LayoutInflater;
@@ -13,7 +14,8 @@ import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.Button;
-        import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.Toast;
         import com.gun0912.tedpermission.PermissionListener;
         import com.gun0912.tedpermission.TedPermission;
         import java.io.IOException;
@@ -26,12 +28,22 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     SurfaceHolder surfaceHolder;
     boolean previewing = false;
     LayoutInflater controlInflater = null;
+    LinearLayout backcolor;
+    Button btnYes, btnNo;
+    //색깔 배열
+    //웜톤
+    String []WarmColor= {"#c087cb","#fed4d5","#FEAFA2","#FFE10B","#017f73","#40388e"," #af5463","#9a9342"};
+    String []CoolColor= {"#C0BEB2","#84CAEB"," #7d7a99","#f6335f",};
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+
 
 
         //권한체크
@@ -53,7 +65,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
 
-
+        //오버레이
         controlInflater = LayoutInflater.from(getBaseContext());
         View viewControl = controlInflater.inflate(R.layout.overlay, null);
         ViewGroup.LayoutParams layoutParamsControl
@@ -61,39 +73,25 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                 ViewGroup.LayoutParams.FILL_PARENT);
         this.addContentView(viewControl, layoutParamsControl);
 
-        buttonStartCameraPreview.setOnClickListener(new Button.OnClickListener(){
+        backcolor=viewControl.findViewById(R.id.backcolor);
+        btnYes=viewControl.findViewById(R.id.btnYes);
+        btnNo=viewControl.findViewById(R.id.btnNo);
 
+        btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if(!previewing){
-                    camera = Camera.open();
-                    if (camera != null){
-                        try {
-                            camera.setPreviewDisplay(surfaceHolder);
-                            camera.startPreview();
-                            previewing = true;
-                        } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }});
+                backcolor.setBackgroundColor(Color.parseColor(WarmColor[0]));
+            }
+        });
 
-        buttonStopCameraPreview.setOnClickListener(new Button.OnClickListener(){
-
+        btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if(camera != null && previewing){
-                    camera.stopPreview();
-                    camera.release();
-                    camera = null;
+                backcolor.setBackgroundColor(Color.parseColor(WarmColor[0]));
+            }
+        });
 
-                    previewing = false;
-                }
-            }});
+
 
     }
 
