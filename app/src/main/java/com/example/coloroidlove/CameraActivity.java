@@ -30,11 +30,13 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     LayoutInflater controlInflater = null;
     LinearLayout backcolor;
     Button btnYes, btnNo;
-    //색깔 배열
-    //웜톤
-    String []WarmColor= {"#c087cb","#fed4d5","#FEAFA2","#FFE10B","#017f73","#40388e"," #af5463","#9a9342"};
-    String []CoolColor= {"#C0BEB2","#84CAEB"," #7d7a99","#f6335f",};
-
+    //색깔 배열 홀수 웜 짝수 쿨
+    String []FirstColor={" ","#fed4d5","#C0BEB2","#FEAFA2","#84CAEB","#FFE10B","#7d7a99","#017f73","#f6335f",
+                        "#40388e","#3ED186","#af5463","1C372E","#9a9342","#602F67"};
+    int cnt=1;
+    //웜 쿨 구분하기
+    int Warm=0;
+    int Cool=0;
 
 
 
@@ -77,17 +79,38 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         btnYes=viewControl.findViewById(R.id.btnYes);
         btnNo=viewControl.findViewById(R.id.btnNo);
 
+
+
+
+
+
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backcolor.setBackgroundColor(Color.parseColor(WarmColor[0]));
+
+                //인덱스 홀짝
+                if((cnt-1)%2==0){
+                    Cool++;
+                }
+                else Warm++;
+
+
+                backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
+
+
+                Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_LONG).show();
+
             }
         });
 
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                backcolor.setBackgroundColor(Color.parseColor(WarmColor[0]));
+                //인덱스 홀짝
+
+                backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
+
+                Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_LONG).show();
             }
         });
 
