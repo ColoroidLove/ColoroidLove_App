@@ -33,6 +33,21 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     //색깔 배열 홀수 웜 짝수 쿨
     String []FirstColor={" ","#fed4d5","#C0BEB2","#FEAFA2","#84CAEB","#FFE10B","#7d7a99","#017f73","#f6335f",
                         "#40388e","#3ED186","#af5463","1C372E","#9a9342","#602F67"};
+
+    String []SpringLight={"#c087cb","#a9d88a","#ffeea0","#fed4d5"};
+    String []SpringBright={"#F23C13","#FEAFA2","#FFE10B","#C98715"};
+    String []SummerLight={"#C0BEB2","#84CAEB","#33CFC4","#F5A9B6"};
+    String []SummerMute={"#7E465A","#584865","#7C798B","#D29AB3"};
+    String []SummerBright={"#f6335f","#ff9aca","#5b72fe","#33dbc1"};
+    String []SummerLowBrightMute={"#e4a6b1" ,"#8fbdd4","#7d7a99" ,"#3da8a0"};
+    String []FallMute={};
+    String []FallString={};
+    String []FallDeep={};
+    String []WinterTrue={};
+    String []WinterBright={};
+    String []WinterDeep={};
+
+
     int cnt=1;
     //웜 쿨 구분하기
     int Warm=0;
@@ -90,15 +105,15 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
                 //인덱스 홀짝
                 if((cnt-1)%2==0){
-                    Cool++;
+                    Warm++;
                 }
-                else Warm++;
+                else Cool++;
 
 
                 backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
 
 
-                Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -110,7 +125,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
                 backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
 
-                Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_SHORT).show();
             }
         });
 
