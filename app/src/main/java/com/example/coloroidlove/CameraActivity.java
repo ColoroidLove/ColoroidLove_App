@@ -36,16 +36,19 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
     String []SpringLight={"#c087cb","#a9d88a","#ffeea0","#fed4d5"};
     String []SpringBright={"#F23C13","#FEAFA2","#FFE10B","#C98715"};
+
+    String []FallMute={"#af5463","#936b52", "#9a9342","#375c77"};
+    String []FallString={"#40388e","#017f73","#e8bb24","#fe3018"};
+    String []FallDeep={"#9f004","#49014","#01564","#b5870"};
+
     String []SummerLight={"#C0BEB2","#84CAEB","#33CFC4","#F5A9B6"};
     String []SummerMute={"#7E465A","#584865","#7C798B","#D29AB3"};
     String []SummerBright={"#f6335f","#ff9aca","#5b72fe","#33dbc1"};
     String []SummerLowBrightMute={"#e4a6b1" ,"#8fbdd4","#7d7a99" ,"#3da8a0"};
-    String []FallMute={};
-    String []FallString={};
-    String []FallDeep={};
-    String []WinterTrue={};
-    String []WinterBright={};
-    String []WinterDeep={};
+
+    String []WinterTrue={"#3B4346","#3ed186","#a8e8ef","#d9364e"};
+    String []WinterBright={"#d7d1ed","#1fa793","#602f67","#2f2f6d"};
+    String []WinterDeep={"#000000","283025","1c6a98","9e2532"};
 
 
     int cnt=1;
