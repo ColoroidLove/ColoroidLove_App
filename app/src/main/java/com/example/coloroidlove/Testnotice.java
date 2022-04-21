@@ -43,7 +43,7 @@ public class Testnotice extends BaseActivity{
         noBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 원하는 기능 구현
+
                 dilaog01.dismiss(); // 다이얼로그 닫기
             }
         });
