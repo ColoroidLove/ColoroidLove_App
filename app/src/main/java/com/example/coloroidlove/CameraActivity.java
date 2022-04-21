@@ -34,6 +34,13 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     String []FirstColor={" ","#fed4d5","#C0BEB2","#FEAFA2","#84CAEB","#FFE10B","#7d7a99","#017f73","#f6335f",
                         "#40388e","#3ED186","#af5463","1C372E","#9a9342","#602F67"};
 
+    String [] WarmColor={"#c087cb","#a9d88a","#ffeea0","#fed4d5","#F23C13","#FEAFA2","#FFE10B","#C98715"
+                        ,"#af5463","#936b52", "#9a9342","#375c77","#40388e","#017f73","#e8bb24","#fe3018","#9f004","#49014","#01564","#b5870"};
+
+    String [] CoolColor={"#C0BEB2","#84CAEB","#33CFC4","#F5A9B6","#7E465A","#584865","#7C798B","#D29AB3","#f6335f","#ff9aca","#5b72fe","#33dbc1",
+                         "#e4a6b1" ,"#8fbdd4","#7d7a99" ,"#3da8a0","#3B4346","#3ed186","#a8e8ef","#d9364e","#d7d1ed","#1fa793","#602f67","#2f2f6d",
+                        "#000000","283025","1c6a98","9e2532"};
+
     String []SpringLight={"#c087cb","#a9d88a","#ffeea0","#fed4d5"};
     String []SpringBright={"#F23C13","#FEAFA2","#FFE10B","#C98715"};
 
@@ -55,8 +62,49 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     //웜 쿨 구분하기
     int Warm=0;
     int Cool=0;
+    int chkTest=1; //1=첫번째 테스트 2=웜 테스트 3=쿨 테스트
 
 
+    public void FirstTestYes() {
+        //인덱스 홀짝
+        if((cnt-1)%2==0) Warm++;
+
+        else Cool++;
+
+        backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
+        Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_SHORT).show();
+        if(cnt==11){
+            if(Warm>Cool) chkTest=2;
+            else chkTest=3;
+        }
+
+    }
+
+    public void FirstTestNo() {
+        //인덱스 홀짝
+        backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
+        Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_SHORT).show();
+        if(cnt==11){
+            if(Warm>Cool) chkTest=2;
+            else chkTest=3;
+        }
+    }
+
+    public void WarmTestYes() {
+        Toast.makeText(getApplicationContext(), "안녕하세요" ,Toast.LENGTH_SHORT).show();
+    }
+
+    public void WarmTestNo() {
+        Toast.makeText(getApplicationContext(), "안녕하세요" ,Toast.LENGTH_SHORT).show();
+    }
+
+    public void CoolTestYes() {
+        Toast.makeText(getApplicationContext(), "안녕하세요" ,Toast.LENGTH_SHORT).show();
+    }
+
+    public void CoolTestNo() {
+        Toast.makeText(getApplicationContext(), "안녕하세요" ,Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,17 +154,15 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             @Override
             public void onClick(View v) {
 
-                //인덱스 홀짝
-                if((cnt-1)%2==0){
-                    Warm++;
+                switch (chkTest){
+                    case 1: FirstTestYes(); break;
+                    case 2: WarmTestYes(); break;
+                    case 3: CoolTestYes(); break;
                 }
-                else Cool++;
 
 
-                backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
 
 
-                Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -124,11 +170,11 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         btnNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //인덱스 홀짝
-
-                backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
-
-                Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_SHORT).show();
+                switch (chkTest){
+                    case 1: FirstTestNo(); break;
+                    case 2: WarmTestNo(); break;
+                    case 3: CoolTestNo(); break;
+                }
             }
         });
 
