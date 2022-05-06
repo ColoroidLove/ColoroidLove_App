@@ -3,6 +3,8 @@ package com.example.coloroidlove;
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;
         import androidx.annotation.NonNull;
         import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
         import android.hardware.Camera;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 
 public class CameraActivity extends BaseActivity implements SurfaceHolder.Callback {
 
+
     Camera camera;
     SurfaceView surfaceView;
     SurfaceHolder surfaceHolder;
@@ -41,12 +44,15 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                          "#e4a6b1" ,"#8fbdd4","#7d7a99" ,"#3da8a0","#3B4346","#3ed186","#a8e8ef","#d9364e","#d7d1ed","#1fa793","#602f67","#2f2f6d",
                         "#000000","283025","1c6a98","9e2532"};
 
+    String [] WarmName={"봄라이트","봄브라이트","가을뮤트","가을스트롱","가을딥"};
+    String [] CoolName={"여름라이트","여름뮤트","여름뮤트","저명도뮤트","겨울쿨","겨울브라이트","겨울딥"};
+
     String []SpringLight={"#c087cb","#a9d88a","#ffeea0","#fed4d5"};
     String []SpringBright={"#F23C13","#FEAFA2","#FFE10B","#C98715"};
 
     String []FallMute={"#af5463","#936b52", "#9a9342","#375c77"};
-    String []FallString={"#40388e","#017f73","#e8bb24","#fe3018"};
-    String []FallDeep={"#9f004","#49014","#01564","#b5870"};
+    String []FallStrong={"#40388e","#017f73","#fe3018","#e8bb24"};
+    String []FallDeep={"#9f0040","#49014D","#015641","#b58700"};
 
     String []SummerLight={"#C0BEB2","#84CAEB","#33CFC4","#F5A9B6"};
     String []SummerMute={"#7E465A","#584865","#7C798B","#D29AB3"};
@@ -58,23 +64,51 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     String []WinterDeep={"#000000","283025","1c6a98","9e2532"};
 
 
-    int cnt=1;
-    //웜 쿨 구분하기
+
+
+    int cnt=1; //각 테스트 배열 인덱스 증가
+    int btnCount=0; //다음배열으로 넘어갈 때 인덱스
     int Warm=0;
     int Cool=0;
     int chkTest=1; //1=첫번째 테스트 2=웜 테스트 3=쿨 테스트
 
+    int []warmCount=new int[5]; //각 웜 퍼스널컬러의 갯수 봄라이트 봄브라이트 가을뮤트 가을스트롱 가을딥
+    int []coolCount=new int[7]; //각 쿨 퍼스널컬러의 갯수 여름라이트 여름뮤트 여름브라이트 저명도뮤트 겨울쿨 겨을브라이트 겨울딥
+    public void ColorSort(int[] color, int c){
+        int max=color[0];
+        int key=0;
+        for(int i=0; i<color.length; i++){
+            if(max<color[i])
+                key=i;
 
+
+        }
+
+        if(c==3)   System.out.println("최종 정렬 후 : "+WarmName[key]);
+        else  System.out.println("최종 정렬 후 : "+CoolName[key]);
+
+        chkTest=4;
+
+
+       /* intent.putExtra("결과",WarmName[key] );*/
+
+
+    }
     public void FirstTestYes() {
         //인덱스 홀짝
         if((cnt-1)%2==0) Warm++;
 
         else Cool++;
 
+        System.out.println("웜 : "+Warm);
+        System.out.println("쿨 : "+Cool);
         backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
-        Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_SHORT).show();
-        if(cnt==11){
-            if(Warm>Cool) chkTest=2;
+
+        if(cnt==11){        cnt=0;
+            if(Warm>Cool || Warm==Cool) {
+                System.out.println("웜테스트 시작"); chkTest=2;
+            }
+
             else chkTest=3;
         }
 
@@ -83,27 +117,99 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     public void FirstTestNo() {
         //인덱스 홀짝
         backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
-        Toast.makeText(getApplicationContext(), "쿨 : "+Cool+" 웜 : "+Warm ,Toast.LENGTH_SHORT).show();
-        if(cnt==11){
-            if(Warm>Cool) chkTest=2;
+
+        if(cnt==11){        cnt=0;
+            if(Warm>Cool || Warm==Cool) {
+                System.out.println("웜테스트 시작"); chkTest=2;
+            }
             else chkTest=3;
         }
     }
 
     public void WarmTestYes() {
-        Toast.makeText(getApplicationContext(), "안녕하세요" ,Toast.LENGTH_SHORT).show();
+
+
+        if(cnt==4) cnt=0;
+
+        switch (btnCount/4){
+            case 0 :  backcolor.setBackgroundColor(Color.parseColor(SpringLight[cnt++])); warmCount[0]++; break;
+            case 1 :  backcolor.setBackgroundColor(Color.parseColor(SpringBright[cnt++]));warmCount[1]++; break;
+            case 2 :  backcolor.setBackgroundColor(Color.parseColor(FallMute[cnt++])); warmCount[2]++; break;
+            case 3 :  backcolor.setBackgroundColor(Color.parseColor(FallStrong[cnt++])); warmCount[3]++; break;
+            case 4 :  backcolor.setBackgroundColor(Color.parseColor(FallDeep[cnt++])); warmCount[4]++; break;
+        }
+        btnCount++;
+
+
+        System.out.println("봄라이트 : "+ warmCount[0]);
+        System.out.println("봄브라이트 : "+ warmCount[1]);
+        System.out.println("가을뮤트 : "+warmCount[2]);
+        System.out.println("가을스트롱 : "+warmCount[3]);
+        System.out.println("가을딥 : "+warmCount[4]);
+
+        if(btnCount==21) ColorSort(warmCount,chkTest);
+
+
+
     }
 
     public void WarmTestNo() {
-        Toast.makeText(getApplicationContext(), "안녕하세요" ,Toast.LENGTH_SHORT).show();
+
+
+        if(cnt==4) cnt=0;
+
+        switch (btnCount/4){
+            case 0 :  backcolor.setBackgroundColor(Color.parseColor(SpringLight[cnt++])); break;
+            case 1 :  backcolor.setBackgroundColor(Color.parseColor(SpringBright[cnt++])); break;
+            case 2 :  backcolor.setBackgroundColor(Color.parseColor(FallMute[cnt++]));  break;
+            case 3 :  backcolor.setBackgroundColor(Color.parseColor(FallStrong[cnt++])); break;
+            case 4 :  backcolor.setBackgroundColor(Color.parseColor(FallDeep[cnt++]));  break;
+        }
+        btnCount++;
+
+        System.out.println("봄라이트 : "+ warmCount[0]);
+        System.out.println("봄브라이트 : "+ warmCount[1]);
+        System.out.println("가을뮤트 : "+warmCount[2]);
+        System.out.println("가을스트롱 : "+warmCount[3]);
+        System.out.println("가을딥 : "+warmCount[4]);
+        if(btnCount==21) ColorSort(warmCount,chkTest);
     }
 
     public void CoolTestYes() {
-        Toast.makeText(getApplicationContext(), "안녕하세요" ,Toast.LENGTH_SHORT).show();
+
+        if(cnt==4) cnt=0;
+
+        switch (btnCount/4){
+            case 0 :  backcolor.setBackgroundColor(Color.parseColor(SummerLight[cnt++])); coolCount[0]++; break;
+            case 1 :  backcolor.setBackgroundColor(Color.parseColor(SummerMute[cnt++]));coolCount[1]++; break;
+            case 2 :  backcolor.setBackgroundColor(Color.parseColor(SummerBright [cnt++])); coolCount[2]++; break;
+            case 3 :  backcolor.setBackgroundColor(Color.parseColor(SummerLowBrightMute [cnt++])); coolCount[3]++; break;
+            case 4 :  backcolor.setBackgroundColor(Color.parseColor(WinterTrue [cnt++])); coolCount[4]++; break;
+            case 5 :  backcolor.setBackgroundColor(Color.parseColor(WinterBright  [cnt++])); coolCount[5]++; break;
+            case 6 :  backcolor.setBackgroundColor(Color.parseColor(WinterDeep  [cnt++])); coolCount[6]++; break;
+
+        }
+        btnCount++;
+
+        if(btnCount==29) ColorSort(coolCount,chkTest);
     }
 
     public void CoolTestNo() {
-        Toast.makeText(getApplicationContext(), "안녕하세요" ,Toast.LENGTH_SHORT).show();
+        if(cnt==4) cnt=0;
+
+        switch (btnCount/4){
+            case 0 :  backcolor.setBackgroundColor(Color.parseColor(SummerLight[cnt++])); coolCount[0]++; break;
+            case 1 :  backcolor.setBackgroundColor(Color.parseColor(SummerMute[cnt++]));coolCount[1]++; break;
+            case 2 :  backcolor.setBackgroundColor(Color.parseColor(SummerBright[cnt++])); coolCount[2]++; break;
+            case 3 :  backcolor.setBackgroundColor(Color.parseColor(SummerLowBrightMute [cnt++])); coolCount[3]++; break;
+            case 4 :  backcolor.setBackgroundColor(Color.parseColor(WinterTrue[cnt++])); coolCount[4]++; break;
+            case 5 :  backcolor.setBackgroundColor(Color.parseColor(WinterBright[cnt++])); coolCount[5]++; break;
+            case 6 :  backcolor.setBackgroundColor(Color.parseColor(WinterDeep[cnt++])); coolCount[6]++; break;
+
+        }
+        btnCount++;
+
+        if(btnCount==29) ColorSort(coolCount,chkTest);
     }
 
     @Override
@@ -158,6 +264,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                     case 1: FirstTestYes(); break;
                     case 2: WarmTestYes(); break;
                     case 3: CoolTestYes(); break;
+                    case 4:      gotoClass(ResultActivity.class); break;
                 }
 
 
@@ -174,6 +281,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                     case 1: FirstTestNo(); break;
                     case 2: WarmTestNo(); break;
                     case 3: CoolTestNo(); break;
+                    //case 4:    gotoClass(ResultActivity.class); break;
                 }
             }
         });
