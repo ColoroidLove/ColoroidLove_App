@@ -33,16 +33,12 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     LayoutInflater controlInflater = null;
     LinearLayout backcolor;
     Button btnYes, btnNo;
+    String res="";
     //색깔 배열 홀수 웜 짝수 쿨
     String []FirstColor={" ","#fed4d5","#C0BEB2","#FEAFA2","#84CAEB","#FFE10B","#7d7a99","#017f73","#f6335f",
                         "#40388e","#3ED186","#af5463","1C372E","#9a9342","#602F67"};
 
-    String [] WarmColor={"#c087cb","#a9d88a","#ffeea0","#fed4d5","#F23C13","#FEAFA2","#FFE10B","#C98715"
-                        ,"#af5463","#936b52", "#9a9342","#375c77","#40388e","#017f73","#e8bb24","#fe3018","#9f004","#49014","#01564","#b5870"};
 
-    String [] CoolColor={"#C0BEB2","#84CAEB","#33CFC4","#F5A9B6","#7E465A","#584865","#7C798B","#D29AB3","#f6335f","#ff9aca","#5b72fe","#33dbc1",
-                         "#e4a6b1" ,"#8fbdd4","#7d7a99" ,"#3da8a0","#3B4346","#3ed186","#a8e8ef","#d9364e","#d7d1ed","#1fa793","#602f67","#2f2f6d",
-                        "#000000","283025","1c6a98","9e2532"};
 
     String [] WarmName={"봄라이트","봄브라이트","가을뮤트","가을스트롱","가을딥"};
     String [] CoolName={"여름라이트","여름뮤트","여름뮤트","저명도뮤트","겨울쿨","겨울브라이트","겨울딥"};
@@ -61,7 +57,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
     String []WinterTrue={"#3B4346","#3ed186","#a8e8ef","#d9364e"};
     String []WinterBright={"#d7d1ed","#1fa793","#602f67","#2f2f6d"};
-    String []WinterDeep={"#000000","283025","1c6a98","9e2532"};
+    String []WinterDeep={"#000000","#283025","#1c6a98","#9e2532"};
 
 
 
@@ -84,8 +80,14 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
         }
 
-        if(c==3)   System.out.println("최종 정렬 후 : "+WarmName[key]);
-        else  System.out.println("최종 정렬 후 : "+CoolName[key]);
+        if(c==2) {
+            res=WarmName[key];
+            System.out.println("최종 정렬 후 : "+WarmName[key]);
+        }
+        else {
+            res=CoolName[key];
+            System.out.println("최종 정렬 후 : "+CoolName[key]);
+        }
 
         chkTest=4;
 
@@ -109,7 +111,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                 System.out.println("웜테스트 시작"); chkTest=2;
             }
 
-            else chkTest=3;
+            else { System.out.println("쿨테스트 시작"); chkTest=2; chkTest=3;}
         }
 
     }
@@ -122,7 +124,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             if(Warm>Cool || Warm==Cool) {
                 System.out.println("웜테스트 시작"); chkTest=2;
             }
-            else chkTest=3;
+            else {System.out.println("쿨테스트 시작"); chkTest=3;}
         }
     }
 
@@ -190,7 +192,13 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
         }
         btnCount++;
-
+        System.out.println("여름라이트 : "+ coolCount[0]);
+        System.out.println("여름뮤트 : "+ coolCount[1]);
+        System.out.println("여름브라이트 : "+coolCount[2]);
+        System.out.println("저명도뮤트 : "+coolCount[3]);
+        System.out.println("윈터트루 : "+coolCount[4]);
+        System.out.println("윈터브라이트 : "+coolCount[5]);
+        System.out.println("윈터딥 : "+coolCount[6]);
         if(btnCount==29) ColorSort(coolCount,chkTest);
     }
 
@@ -198,17 +206,23 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         if(cnt==4) cnt=0;
 
         switch (btnCount/4){
-            case 0 :  backcolor.setBackgroundColor(Color.parseColor(SummerLight[cnt++])); coolCount[0]++; break;
-            case 1 :  backcolor.setBackgroundColor(Color.parseColor(SummerMute[cnt++]));coolCount[1]++; break;
-            case 2 :  backcolor.setBackgroundColor(Color.parseColor(SummerBright[cnt++])); coolCount[2]++; break;
-            case 3 :  backcolor.setBackgroundColor(Color.parseColor(SummerLowBrightMute [cnt++])); coolCount[3]++; break;
-            case 4 :  backcolor.setBackgroundColor(Color.parseColor(WinterTrue[cnt++])); coolCount[4]++; break;
-            case 5 :  backcolor.setBackgroundColor(Color.parseColor(WinterBright[cnt++])); coolCount[5]++; break;
-            case 6 :  backcolor.setBackgroundColor(Color.parseColor(WinterDeep[cnt++])); coolCount[6]++; break;
+            case 0 :  backcolor.setBackgroundColor(Color.parseColor(SummerLight[cnt++]));  break;
+            case 1 :  backcolor.setBackgroundColor(Color.parseColor(SummerMute[cnt++])); break;
+            case 2 :  backcolor.setBackgroundColor(Color.parseColor(SummerBright[cnt++]));  break;
+            case 3 :  backcolor.setBackgroundColor(Color.parseColor(SummerLowBrightMute [cnt++])); break;
+            case 4 :  backcolor.setBackgroundColor(Color.parseColor(WinterTrue[cnt++])); break;
+            case 5 :  backcolor.setBackgroundColor(Color.parseColor(WinterBright[cnt++]));  break;
+            case 6 :  backcolor.setBackgroundColor(Color.parseColor(WinterDeep[cnt++]));break;
 
         }
         btnCount++;
-
+        System.out.println("여름라이트 : "+ coolCount[0]);
+        System.out.println("여름뮤트 : "+ coolCount[1]);
+        System.out.println("여름브라이트 : "+coolCount[2]);
+        System.out.println("저명도뮤트 : "+coolCount[3]);
+        System.out.println("윈터트루 : "+coolCount[4]);
+        System.out.println("윈터브라이트 : "+coolCount[5]);
+        System.out.println("윈터딥 : "+coolCount[6]);
         if(btnCount==29) ColorSort(coolCount,chkTest);
     }
 
@@ -216,6 +230,10 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+
+        Intent intent = new Intent(CameraActivity.this, ResultActivity.class);
+
 
 
 
@@ -264,7 +282,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                     case 1: FirstTestYes(); break;
                     case 2: WarmTestYes(); break;
                     case 3: CoolTestYes(); break;
-                    case 4:      gotoClass(ResultActivity.class); break;
+                    case 4:     intent.putExtra("퍼스널컬러", res); startActivity(intent); break;
                 }
 
 
@@ -281,7 +299,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                     case 1: FirstTestNo(); break;
                     case 2: WarmTestNo(); break;
                     case 3: CoolTestNo(); break;
-                    //case 4:    gotoClass(ResultActivity.class); break;
+                    case 4:     intent.putExtra("퍼스널컬러", res); startActivity(intent); break;
                 }
             }
         });
