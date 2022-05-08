@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.coloroidlove.CameraActivity;
 import androidx.annotation.Nullable;
 
 public class ResultActivity  extends BaseActivity {
 
+    ImageView res_img;
     TextView res_title,res_desc, res_name,res_artist,res_item, res_color;
     Button btnEnd;
 
@@ -24,6 +26,7 @@ public class ResultActivity  extends BaseActivity {
         Intent intent = getIntent();
         String personal = intent.getStringExtra("퍼스널컬러");
         String nickname = intent.getStringExtra("닉네임");
+        res_img=findViewById(R.id.res_img);
         res_name  = findViewById(R.id.res_name); //이름
         res_title  = findViewById(R.id.res_title); //결과
         res_desc  = findViewById(R.id.res_desc); //설명
@@ -36,6 +39,7 @@ public class ResultActivity  extends BaseActivity {
         res_name.setText(nickname+"님의 결과");
         res_title.setText(personal);
 
+        //테스트 종료
         btnEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
