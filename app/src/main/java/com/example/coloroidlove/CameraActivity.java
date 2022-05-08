@@ -1,27 +1,30 @@
 package com.example.coloroidlove;
 
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;
-        import androidx.annotation.NonNull;
-        import android.Manifest;
-import android.content.Context;
+import androidx.annotation.NonNull;
+
+import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
-        import android.hardware.Camera;
-        import android.os.Bundle;
-        import android.view.LayoutInflater;
-        import android.view.Surface;
-        import android.view.SurfaceHolder;
-        import android.view.SurfaceView;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
+import android.hardware.Camera;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-        import com.gun0912.tedpermission.PermissionListener;
-        import com.gun0912.tedpermission.TedPermission;
-        import java.io.IOException;
-        import java.util.ArrayList;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class CameraActivity extends BaseActivity implements SurfaceHolder.Callback {
 
@@ -32,11 +35,13 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     boolean previewing = false;
     LayoutInflater controlInflater = null;
     LinearLayout backcolor;
-    Button btnYes, btnNo;
+    ImageView btnYes, btnNo;
+    Button btnEnd;
     String res="";
+
     //색깔 배열 홀수 웜 짝수 쿨
     String []FirstColor={" ","#fed4d5","#C0BEB2","#FEAFA2","#84CAEB","#FFE10B","#7d7a99","#017f73","#f6335f",
-                        "#40388e","#3ED186","#af5463","1C372E","#9a9342","#602F67"};
+            "#40388e","#3ED186","#af5463","1C372E","#9a9342","#602F67"};
 
 
 
@@ -92,7 +97,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         chkTest=4;
 
 
-       /* intent.putExtra("결과",WarmName[key] );*/
+
 
 
     }
@@ -230,10 +235,11 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-
+        Intent intent1 = getIntent(); //과거 인텐트
+        String nickname = intent1.getStringExtra("닉네임");
 
         Intent intent = new Intent(CameraActivity.this, ResultActivity.class);
-
+        System.out.println("닉네임 값 확인 : "+nickname);
 
 
 
@@ -247,8 +253,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                 .check();
 
 
-        Button buttonStartCameraPreview = (Button)findViewById(R.id.startcamerapreview);
-        Button buttonStopCameraPreview = (Button)findViewById(R.id.stopcamerapreview);
+
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
         surfaceView = (SurfaceView)findViewById(R.id.surfaceview);
@@ -268,11 +273,38 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         backcolor=viewControl.findViewById(R.id.backcolor);
         btnYes=viewControl.findViewById(R.id.btnYes);
         btnNo=viewControl.findViewById(R.id.btnNo);
+        btnEnd=viewControl.findViewById(R.id.btnEnd);
 
 
+        Dialog dilaog02;
+
+        dilaog02 = new Dialog(CameraActivity.this);       // Dialog 초기화
+        dilaog02.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
+        dilaog02.setContentView(R.layout.dialog2);             // xml 레이아웃 파일과 연결
 
 
-
+    btnEnd.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            dilaog02.show();
+            Button noBtn = dilaog02.findViewById(R.id.noBtn);
+            noBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoClass(MainActivity.class);
+                    dilaog02.dismiss(); // 다이얼로그 닫기
+                }
+            });
+            // 취소
+            dilaog02.findViewById(R.id.yesBtn).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // 원하는 기능 구현
+                    finish();           // 앱 종료
+                }
+            });
+        }
+    });
 
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,7 +314,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                     case 1: FirstTestYes(); break;
                     case 2: WarmTestYes(); break;
                     case 3: CoolTestYes(); break;
-                    case 4:     intent.putExtra("퍼스널컬러", res); startActivity(intent); break;
+                    case 4: intent.putExtra("닉네임", nickname);  intent.putExtra("퍼스널컬러", res); startActivity(intent); break;
                 }
 
 
@@ -299,7 +331,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                     case 1: FirstTestNo(); break;
                     case 2: WarmTestNo(); break;
                     case 3: CoolTestNo(); break;
-                    case 4:     intent.putExtra("퍼스널컬러", res); startActivity(intent); break;
+                    case 4:  intent.putExtra("닉네임", nickname);   intent.putExtra("퍼스널컬러", res); startActivity(intent); break;
                 }
             }
         });

@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public class MainActivity extends BaseActivity {
     ArrayList<Coloroid> cArray;
     Coloroid cItem;
     Button btn_start;
+
 
     //초기 데이터
     Integer[] profile = {R.drawable.profile};
@@ -40,6 +43,8 @@ public class MainActivity extends BaseActivity {
         cList = findViewById(R.id.list);
         cArray = new ArrayList<Coloroid>();
         btn_start = findViewById(R.id.btn_start);
+
+
 
         for (int i = 0; i < profile.length; i++) {
             cItem = new Coloroid(ContextCompat.getDrawable(this, polar[i]), name[i], result[i],
@@ -73,13 +78,27 @@ public class MainActivity extends BaseActivity {
             // '아래 네 버튼'처럼 바로 연결하면 일회성으로 사용하기 편함.
             // *주의할 점: findViewById()를 쓸 때는 -> 앞에 반드시 다이얼로그 이름을 붙여야 한다.
 
+            EditText nickname=dilaog01.findViewById(R.id.nickname);
+            Intent intent1 = new Intent(MainActivity.this, CameraActivity.class);
             // 시작
             Button noBtn = dilaog01.findViewById(R.id.noBtn);
             noBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    gotoClass(CameraActivity.class);
-                    dilaog01.dismiss(); // 다이얼로그 닫기
+                    String name=nickname.getText().toString();
+                    System.out.println("닉네임 : "+name);
+
+                    if ( name.length() == 0 ) {
+                        Toast.makeText(getApplicationContext(), "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        intent1.putExtra("닉네임", name);
+                        startActivity(intent1);
+                        dilaog01.dismiss(); // 다이얼로그 닫기
+                    }
+
+
+
                 }
             });
             // 취소
@@ -87,7 +106,7 @@ public class MainActivity extends BaseActivity {
                 @Override
                 public void onClick(View view) {
                     // 원하는 기능 구현
-                    finish();           // 앱 종료
+                    gotoClass(MainActivity.class);         // 앱 종료
                 }
             });
         }

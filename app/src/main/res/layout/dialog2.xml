@@ -7,22 +7,13 @@
     android:orientation="vertical">
 
     <TextView
+        android:fontFamily="@font/nanumr"
         android:layout_width="300dp"
         android:layout_height="120dp"
-        android:fontFamily="@font/nanumr"
-        android:gravity="center"
         android:padding="30dp"
-        android:text="검사 전 확인 !\n검사 시간은 약 10분내외입니다.\n얼굴이 잘 보이는 곳에서\n 검사를 진행해주세요."
-        android:textSize="14dp" />
-
-    <EditText
-        android:maxLength="10"
-        android:id="@+id/nickname"
-        android:layout_gravity="center"
-        android:textSize="12dp"
-        android:hint="닉네임을 10자 내로 입력해주세요"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:textSize="33px"
+        android:gravity="center"
+        android:text="검사 종료 \n검사기록은 남지않으며\n이어하기가 불가능 합니다\n그래도 종료하시겠습니까?" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="시작하기" />
+            android:text="종료하기" />
 
         <Button
             android:fontFamily="@font/nanumr"
