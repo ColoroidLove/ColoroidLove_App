@@ -27,10 +27,10 @@ public class MainActivity extends BaseActivity {
 
 
     //초기 데이터
-    Integer[] profile = {R.drawable.profile};
+    Integer[] profile = {R.drawable.profile_1};
     String[] name = {"박종성여친"};
     String[] result = {"여름뮤트"};
-    Integer[] polar = {R.drawable.polar};
+    Integer[] polar = {R.drawable.polar_falldeep};
 
     // 커스텀 다이얼로그
     Dialog dilaog01;
