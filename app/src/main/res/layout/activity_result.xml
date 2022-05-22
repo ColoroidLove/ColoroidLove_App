@@ -12,8 +12,8 @@
         <ImageView
             android:id="@+id/res_img"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:src="@drawable/testimg" />
+            android:layout_height="279dp"
+            android:src="@drawable/result_springlight" />
 
         <TextView
             android:id="@+id/res_name"

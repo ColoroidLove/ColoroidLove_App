@@ -23,7 +23,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="@drawable/profile_round_gray"
-            android:src="@drawable/profile"
+            android:src="@drawable/progile_1"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
         android:layout_weight="1" />
 
     <ImageView
-        android:src="@drawable/polar"
+        android:src="@drawable/polar_falldeep"
         android:layout_marginRight="20dp"
         android:id="@+id/polarImg"
         android:layout_width="70dp"
