@@ -5,6 +5,8 @@ import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -44,15 +46,15 @@ public class MainActivity extends BaseActivity {
         cArray = new ArrayList<Coloroid>();
         btn_start = findViewById(R.id.btn_start);
 
+        displayList();
 
-
-        for (int i = 0; i < profile.length; i++) {
+        /*for (int i = 0; i < profile.length; i++) {
             cItem = new Coloroid(ContextCompat.getDrawable(this, polar[i]), name[i], result[i],
                     ContextCompat.getDrawable(this, profile[i]));
             cArray.add(cItem);
         }
         cAdapter = new ColoroidAdapter(this, cArray);
-        cList.setAdapter(cAdapter);
+        cList.setAdapter(cAdapter);*/
 
         dilaog01 = new Dialog(MainActivity.this);       // Dialog 초기화
         dilaog01.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
@@ -66,6 +68,28 @@ public class MainActivity extends BaseActivity {
                 showDialog01(); // 아래 showDialog01() 함수 호출
             }
         });
+    }
+
+    // list 출력
+    void displayList(){
+        //Dbhelper의 읽기모드 객체를 가져와 SQLiteDatabase에 담아 사용준비
+        DBHelper helper = new DBHelper(this);
+        SQLiteDatabase database = helper.getReadableDatabase();
+
+        //Cursor라는 그릇에 목록을 담아주기
+        Cursor cursor = database.rawQuery("SELECT * FROM student",null);
+
+        //리스트뷰에 목록 채워주는 도구인 adapter준비
+        ListViewAdapter adapter = new ListViewAdapter();
+
+        //목록의 개수만큼 순회하여 adapter에 있는 list배열에 add
+        while(cursor.moveToNext()){
+            //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
+            adapter.addItemToList(cursor.getString(1),cursor.getString(2));
+        }
+
+        //리스트뷰의 어댑터 대상을 여태 설계한 adapter로 설정
+        cList.setAdapter(adapter);
     }
         // dialog01을 디자인하는 함수
         public void showDialog01 () {
