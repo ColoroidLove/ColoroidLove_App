@@ -1,6 +1,7 @@
 package com.example.coloroidlove;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,8 @@ public class ResultActivity  extends BaseActivity {
     TextView res_title,res_desc, res_name,res_artist,res_item, res_color;
     Button btnEnd;
 
-
+    String personal;
+    String nickname;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,8 +26,8 @@ public class ResultActivity  extends BaseActivity {
         setContentView(R.layout.activity_result);
 
         Intent intent = getIntent();
-        String personal = intent.getStringExtra("퍼스널컬러");
-        String nickname = intent.getStringExtra("닉네임");
+        personal = intent.getStringExtra("퍼스널컬러");
+        nickname = intent.getStringExtra("닉네임");
         res_img=findViewById(R.id.res_img);
         res_name  = findViewById(R.id.res_name); //이름
         res_title  = findViewById(R.id.res_title); //결과
@@ -39,6 +41,8 @@ public class ResultActivity  extends BaseActivity {
         res_name.setText(nickname+"님의 결과");
         res_title.setText(personal);
 
+        insertStudent();
+
         //테스트 종료
         btnEnd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,5 +51,15 @@ public class ResultActivity  extends BaseActivity {
             }
         });
 
+    }
+
+
+    void insertStudent(){
+        //Dbhelper의 쓰기모드 객체를 가져옴
+        DBHelper helper = new DBHelper(this);
+        SQLiteDatabase database = helper.getReadableDatabase();
+
+        String qry = "INSERT INTO student(name, result) VALUES('"+nickname+"', '" + personal + "')";
+        database.execSQL(qry); //만들어준 쿼리문 실행
     }
 }

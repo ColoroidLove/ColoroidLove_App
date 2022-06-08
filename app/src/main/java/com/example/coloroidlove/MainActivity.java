@@ -104,6 +104,7 @@ public class MainActivity extends BaseActivity {
 
             EditText nickname=dilaog01.findViewById(R.id.nickname);
             Intent intent1 = new Intent(MainActivity.this, CameraActivity.class);
+
             // 시작
             Button noBtn = dilaog01.findViewById(R.id.noBtn);
             noBtn.setOnClickListener(new View.OnClickListener() {
