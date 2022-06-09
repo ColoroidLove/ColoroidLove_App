@@ -5,13 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
 
     ArrayList<ListViewAdapterData> list = new ArrayList<ListViewAdapterData>();
+
+    Integer[] WarmPolar = {R.drawable.polar_springlight, R.drawable.polar_springbright,
+            R.drawable.polar_fallmute, R.drawable.polar_fallstrong, R.drawable.polar_falldeep};
+    Integer[] CoolPolar = {
+            R.drawable.polar_summerlight, R.drawable.polar_summermute, R.drawable.polar_summerbright, R.drawable.polar_summerlowerbrightmute,
+            R.drawable.polar_wintertrue, R.drawable.polar_winterbright, R.drawable.polar_winterdeep};
+    Integer[] profileImg = {R.drawable.profile_1, R.drawable.profile_2, R.drawable.profile_3, R.drawable.profile_4, R.drawable.profile_5}; // profile
 
     @Override
     public int getCount() {
@@ -41,14 +51,17 @@ public class ListViewAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.listitem,viewGroup,false);
         }
 
-        //이제 아이템에 존재하는 텍스트뷰 객체들을 view객체에서 찾아 가져온다
+        //이제 아이템에 존재하는 객체들을 view객체에서 찾아 가져온다
+        //ImageView imgProfile = (ImageView) view.findViewById(R.id.profileImg);
         TextView tvName = (TextView)view.findViewById(R.id.name);
         TextView tvResult = (TextView)view.findViewById(R.id.result);
+        ImageView imgPpolar = view.findViewById(R.id.polarImg);
 
         //현재 포지션에 해당하는 아이템에 글자를 적용하기 위해 list배열에서 객체를 가져온다.
         ListViewAdapterData listdata = list.get(i);
 
-        //가져온 객체안에 있는 글자들을 각 뷰에 적용한다
+        //가져온 객체안에 있는 값들을 각 뷰에 적용한다
+        //imgProfile.setImageDrawable(R.layout.listitem, profileImg[listdata.getProfileImg()]);
         tvName.setText(listdata.getName());
         tvResult.setText(listdata.getResult());
 

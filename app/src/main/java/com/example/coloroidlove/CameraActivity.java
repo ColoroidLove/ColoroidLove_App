@@ -37,7 +37,11 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     LinearLayout backcolor;
     ImageView btnYes, btnNo;
     Button btnEnd;
+
+    // 퍼스널 컬러 결과 intent로 전해줄 변수
     String res="";
+    int base=0; // 0은 warm, 1은 cool
+    int index=0;
 
     //색깔 배열 홀수 웜 짝수 쿨
     String []FirstColor={" ","#fed4d5","#C0BEB2","#FEAFA2","#84CAEB","#FFE10B","#7d7a99","#017f73","#f6335f",
@@ -45,8 +49,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
 
 
-    String [] WarmName={"봄라이트","봄브라이트","가을뮤트","가을스트롱","가을딥"};
-    String [] CoolName={"여름라이트","여름뮤트","여름뮤트","저명도뮤트","겨울쿨","겨울브라이트","겨울딥"};
+    String [] WarmName={"사랑스러운 봄라이트","생기 있는 봄브라이트","가을뮤트","가을스트롱","화려한 가을딥"};
+    String [] CoolName={"싱그러운 여름라이트","소프트한 여름뮤트","여름 브라이트","저명도뮤트","깔끔한 겨울트루","시원시원한 겨울브라이트","도도한 겨울딥"};
 
     String []SpringLight={"#c087cb","#a9d88a","#ffeea0","#fed4d5"};
     String []SpringBright={"#F23C13","#FEAFA2","#FFE10B","#C98715"};
@@ -86,11 +90,15 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         }
 
         if(c==2) {
-            res=WarmName[key];
+            res=WarmName[key]; // 결과 넣기
+            base=0;
+            index=key;
             System.out.println("최종 정렬 후 : "+WarmName[key]);
         }
         else {
-            res=CoolName[key];
+            res=CoolName[key]; // 결과 넣기
+            base=1;
+            index=key;
             System.out.println("최종 정렬 후 : "+CoolName[key]);
         }
 
@@ -314,13 +322,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                     case 1: FirstTestYes(); break;
                     case 2: WarmTestYes(); break;
                     case 3: CoolTestYes(); break;
-                    case 4: intent.putExtra("닉네임", nickname);  intent.putExtra("퍼스널컬러", res); startActivity(intent); break;
+                    case 4: intent.putExtra("닉네임", nickname);  intent.putExtra("퍼스널컬러", res); intent.putExtra("베이스컬러", base); intent.putExtra("컬러인덱스", index); startActivity(intent); break;
                 }
-
-
-
-
-
             }
         });
 
@@ -331,7 +334,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                     case 1: FirstTestNo(); break;
                     case 2: WarmTestNo(); break;
                     case 3: CoolTestNo(); break;
-                    case 4:  intent.putExtra("닉네임", nickname);   intent.putExtra("퍼스널컬러", res); startActivity(intent); break;
+                    case 4:  intent.putExtra("닉네임", nickname);   intent.putExtra("퍼스널컬러", res); intent.putExtra("베이스컬러", base); intent.putExtra("컬러인덱스", index); startActivity(intent); break;
                 }
             }
         });

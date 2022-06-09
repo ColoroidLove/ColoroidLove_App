@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
@@ -46,7 +47,8 @@ public class MainActivity extends BaseActivity {
         cArray = new ArrayList<Coloroid>();
         btn_start = findViewById(R.id.btn_start);
 
-        displayList();
+        //displayList();
+        Drop(this);
 
         /*for (int i = 0; i < profile.length; i++) {
             cItem = new Coloroid(ContextCompat.getDrawable(this, polar[i]), name[i], result[i],
@@ -77,7 +79,7 @@ public class MainActivity extends BaseActivity {
         SQLiteDatabase database = helper.getReadableDatabase();
 
         //Cursor라는 그릇에 목록을 담아주기
-        Cursor cursor = database.rawQuery("SELECT * FROM student",null);
+        Cursor cursor = database.rawQuery("SELECT * FROM usersTB",null);
 
         //리스트뷰에 목록 채워주는 도구인 adapter준비
         ListViewAdapter adapter = new ListViewAdapter();
@@ -90,7 +92,22 @@ public class MainActivity extends BaseActivity {
 
         //리스트뷰의 어댑터 대상을 여태 설계한 adapter로 설정
         cList.setAdapter(adapter);
+   }
+
+    // database 삭제
+    public void Drop(MainActivity view){
+        String DB_PATH = "/data/data/" + getPackageName();
+        String DB_NAME = "data.db";
+        String DB_FULLPATH = DB_PATH + "/databases/" + DB_NAME;
+
+        File dbFile = new File(DB_FULLPATH);
+        if(dbFile.delete()){
+            System.out.println("삭제 성공");
+        }else{
+            System.out.println("삭제 실패");
+        }
     }
+
         // dialog01을 디자인하는 함수
         public void showDialog01 () {
             dilaog01.show(); // 다이얼로그 띄우기
