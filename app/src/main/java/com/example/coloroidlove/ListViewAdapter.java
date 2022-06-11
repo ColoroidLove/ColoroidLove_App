@@ -100,7 +100,7 @@ public class ListViewAdapter extends BaseAdapter {
         }
 
         //값들의 조립이 완성된 listdata객체 한개를 list배열에 추가
-        list.add(listdata);
+        list.add(0,listdata);  //0을 넣는이유 내림차순 정렬
 
     }
 }

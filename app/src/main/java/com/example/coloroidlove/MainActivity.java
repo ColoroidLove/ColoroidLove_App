@@ -26,13 +26,6 @@ public class MainActivity extends BaseActivity {
 
     Button btn_start;
 
-
-    //초기 데이터
-    Integer[] profile = {R.drawable.profile_1};
-    String[] name = {"박종성여친"};
-    String[] result = {"여름뮤트"};
-    Integer[] polar = {R.drawable.polar_falldeep};
-
     // 커스텀 다이얼로그
     Dialog dilaog01;
 
@@ -46,15 +39,7 @@ public class MainActivity extends BaseActivity {
         btn_start = findViewById(R.id.btn_start);
 
         displayList();
-        //Drop(this);
 
-        /*for (int i = 0; i < profile.length; i++) {
-            cItem = new Coloroid(ContextCompat.getDrawable(this, polar[i]), name[i], result[i],
-                    ContextCompat.getDrawable(this, profile[i]));
-            cArray.add(cItem);
-        }
-        cAdapter = new ColoroidAdapter(this, cArray);
-        cList.setAdapter(cAdapter);*/
 
         dilaog01 = new Dialog(MainActivity.this);       // Dialog 초기화
         dilaog01.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
