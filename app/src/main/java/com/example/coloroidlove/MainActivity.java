@@ -47,8 +47,8 @@ public class MainActivity extends BaseActivity {
         cArray = new ArrayList<Coloroid>();
         btn_start = findViewById(R.id.btn_start);
 
-        //displayList();
-        Drop(this);
+        displayList();
+        //Drop(this);
 
         /*for (int i = 0; i < profile.length; i++) {
             cItem = new Coloroid(ContextCompat.getDrawable(this, polar[i]), name[i], result[i],

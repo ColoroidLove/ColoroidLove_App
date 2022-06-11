@@ -40,8 +40,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
     // 퍼스널 컬러 결과 intent로 전해줄 변수
     String res="";
-    int base=0; // 0은 warm, 1은 cool
-    int index=0;
+    int base; // 0은 warm, 1은 cool
+    int index;
 
     //색깔 배열 홀수 웜 짝수 쿨
     String []FirstColor={" ","#fed4d5","#C0BEB2","#FEAFA2","#84CAEB","#FFE10B","#7d7a99","#017f73","#f6335f",
@@ -99,6 +99,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             res=CoolName[key]; // 결과 넣기
             base=1;
             index=key;
+            System.out.println("base : " + base);
             System.out.println("최종 정렬 후 : "+CoolName[key]);
         }
 
@@ -120,10 +121,9 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
 
         if(cnt==11){        cnt=0;
-            if(Warm>Cool || Warm==Cool) {
+            if(Warm>Cool) { //if(Warm>Cool || Warm==Cool) {
                 System.out.println("웜테스트 시작"); chkTest=2;
             }
-
             else { System.out.println("쿨테스트 시작"); chkTest=2; chkTest=3;}
         }
 

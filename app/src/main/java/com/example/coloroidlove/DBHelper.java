@@ -21,18 +21,18 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
         //테이블의 구조는 여기서 설계
-        String qry = "CREATE TABLE usersTB(num INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, result TEXT)";
+        String qry = "CREATE TABLE usersTB(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, result TEXT, base INTEGER(2), polarImg INTEGER(2), profileImg INTEGER(2))";
         sqLiteDatabase.execSQL(qry);
 
         //없으면 썰렁하니 아무 데이터라도 넣어주기
-        /*
-        qry = "INSERT INTO student(name, result) VALUES('황수고', '가을뮤트')";
+
+        qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('황수고', '겨울트루', 1, 4, 2)";
         sqLiteDatabase.execSQL(qry);
-        qry = "INSERT INTO student(name, result) VALUES('김영우', '겨울딥')";
+        qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('김영우', '겨울딥', 1, 6, 0)";
         sqLiteDatabase.execSQL(qry);
-        qry = "INSERT INTO student(name, result) VALUES('양정원', '여름브라이트')";
+        qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('양정원', '겨울브라이트', 1, 5, 3)";
         sqLiteDatabase.execSQL(qry);
-        */
+
     }
 
 

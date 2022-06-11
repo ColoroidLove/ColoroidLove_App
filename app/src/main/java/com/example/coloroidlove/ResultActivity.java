@@ -22,13 +22,16 @@ public class ResultActivity  extends BaseActivity {
     String personal;
     String nickname;
 
-    // base를 정할 base 변수, 퍼스널 결과에 맞는 결과를 가져오기 위한 인덱스 변수
+    // base를 정할 base 변수(웜 쿨 판단), 퍼스널 결과에 맞는 결과를 가져오기 위한 인덱스 변수
     int base;
     int index;
 
+    // 결과 프로필 배열
+    Integer[] reusltWarmImg = {R.drawable.result_springlight, R.drawable.result_springlight,
+            R.drawable.result_fallmute, R.drawable.result_fallstrong, R.drawable.result_falldeep}; // 웜 결과 이미지
+    Integer[] reusltCoolImg = {R.drawable.result_springlight, R.drawable.result_summermute, R.drawable.result_summerbright, R.drawable.result_summerlowbrightmute,
+            R.drawable.result_wintertrue,   R.drawable.result_winterbright,  R.drawable.result_winterdeep}; // 쿨 결과 이미지
 
-    // 결과 배열
-    Integer[] profileImg = {R.drawable.profile_1, R.drawable.profile_2, R.drawable.profile_3, R.drawable.profile_4, R.drawable.profile_5}; // profile
     // 결과 자세한 설명
     /*
      봄라이트, 봄브라이트
@@ -36,7 +39,7 @@ public class ResultActivity  extends BaseActivity {
      가을뮤트, 가을스트롱, 가을딥
      겨울트루, 겨울브라이트, 겨울딥
      */
-    // insert에 들어가야할 사진
+    // insert에 들어가야할 사진(폴라)
     Integer[] WarmPolar = {R.drawable.polar_springlight, R.drawable.polar_springbright,
             R.drawable.polar_fallmute, R.drawable.polar_fallstrong, R.drawable.polar_falldeep};
     Integer[] CoolPolar = {
@@ -54,7 +57,7 @@ public class ResultActivity  extends BaseActivity {
                     "메이크업을 할 때 치크는 차분환 코랄, 오렌지 컬러로 립 컬러는 레드, 오렌지, 벽돌 컬러, 베이스는 스트롱 웜톤인 만큼 옐로 베이스를 픽하는 것이 효과적이다.",
             " 가을 딥 톤은 뮤트톤보다는 색감이 더 들어가고, 어두운 색상이 잘어울리는 타입! 원색에 검은색이 섞인 낮은 명채도의 색들로 구성되어 있고 대체로 섹시하고 고급스러운 분위기를 띈다. "};
     String[] CoolDesc = {
-            "회색 기와 푸른 기가 살짝 도는 고명도의 은은한 파스텔 컬러\n" + "\n" + "맑고, 청량하고, 싱그러운 느낌!",
+            "회색 기와 푸른 기가 살짝 도는 고명도의 \n은은한 파스텔 컬러" + "맑고, 청량하고, 싱그러운 느낌!",
             "회색 기가 많이 섞인 톤 다운된 파스텔 계열이 찰떡!\n" + "\n" + "우아+단아한 분위기는 세련되고 시크한 이미지까지",
             "여름 브라이트는 여름 ‘트루’ 톤이라고도 하는데, 생기 가득하면서 청량한 느낌을 가진 톤이다. \n" + "\n" +
                     "채도가 높은 원색 계열이 잘 받는 톤이다. 대표적으로 핫핑크나 코발트 블루같은 고명도 고채도의 밝고 선명한 색상이 베스트이다.\n" + "\n" +
@@ -125,7 +128,7 @@ public class ResultActivity  extends BaseActivity {
         Intent intent = getIntent();
         personal = intent.getStringExtra("퍼스널컬러");
         nickname = intent.getStringExtra("닉네임");
-        base = intent.getIntExtra("베이스컬러",0);
+        base = intent.getIntExtra("베이스컬러",1);
         index = intent.getIntExtra("컬러인덱스",0);
 
 
@@ -139,32 +142,25 @@ public class ResultActivity  extends BaseActivity {
         btnEnd=findViewById(R.id.btnEnd); //종료하기
         System.out.println("닉네임 값 확인 : "+nickname);
 
-        res_img.setImageDrawable(ContextCompat.getDrawable(this, profileImg[0]));
+
         res_name.setText(nickname+"님의 결과");
         res_title.setText(personal);
 
         if(base==0){ // warm
-            // 프로필 사진 랜덤 1~5
+            res_img.setImageDrawable(ContextCompat.getDrawable(this, reusltWarmImg[index]));
             res_desc.setText(WarmDesc[index]);
             res_artist.setText("대표적인 연예인 : " + WarmArtist[index]);
             res_item.setText("추천 아이템 : " + WarmItem[index]);
             res_color.setText("추천 컬러 : " + WarmColor[index]);
         }else{ // cool
+            res_img.setImageDrawable(ContextCompat.getDrawable(this, reusltCoolImg[index]));
             res_desc.setText(CoolDesc[index]);
             res_artist.setText("대표적인 연예인 : " + CoolArtist[index]);
             res_item.setText("추천 아이템 : " + CoolItem[index]);
             res_color.setText("추천 컬러 : " + CoolColor[index]);
         }
 
-        //res_img.setImageDrawable();
-/*        res_name.setText(nickname+"님의 결과");
-        res_title.setText(personal);*/
-        // res_desc.setText();
-         //res_artist.setText("대표적인 연예인 : " + );
-        //res_item.setText("추천 아이템 : " + );
-        // res_color.setText("추천 컬러 : " + );
-
-        //insertStudent();
+        insertStudent();
 
         //테스트 종료
         btnEnd.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +178,10 @@ public class ResultActivity  extends BaseActivity {
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
 
-        String qry = "INSERT INTO usersTB(name, result) VALUES('"+nickname+"', '" + personal + "')";
+        System.out.println(base);
+        // profile 랜덤
+        //"INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('황수고', '겨울트루', 1, 4, 2)";
+        String qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('"+nickname+"', '" + personal + "', " + 1 + ", " + index + ", " + 3 + ")";
         database.execSQL(qry); //만들어준 쿼리문 실행
     }
 }
