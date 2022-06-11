@@ -16,6 +16,13 @@ public class ListViewAdapterData {
     public void setProfileImg(int profileImg) {this.profileImg = profileImg;}
     public void setBase(int base) {this.base = base;}
 
+    //난수를 생성해 인덱스 값을 넘겨준다
+    public  int getRandomIndex(){
+        int rn= (int) (Math.random() *5);
+        return rn;
+
+    }
+
     public int getId(){return this.id;}
     public String getName(){return this.name;}
     public String getResult(){return this.result;}

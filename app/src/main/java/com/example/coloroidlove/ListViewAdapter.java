@@ -68,14 +68,18 @@ public class ListViewAdapter extends BaseAdapter {
         imgProfile.setImageDrawable(context.getResources().getDrawable(profileImg[listdata.getProfileImg()]));
         tvName.setText(listdata.getName());
         tvResult.setText(listdata.getResult());
+
+
+
+
         if(listdata.getBase()==0){
             String s = "id : " + listdata.getId() + ", name : "+ listdata.getName() + "base : " + listdata.getBase() + ", polarImg : " + listdata.getPolarImg();
             Log.d("", s);
-            imgPolar.setImageDrawable(context.getResources().getDrawable(WarmPolar[listdata.getPolarImg()]));
+            imgPolar.setImageDrawable(context.getResources().getDrawable(listdata.getPolarImg()));
         }else{
             String s = "name : "+ listdata.getName() + ", base : " + listdata.getBase() + ", polarImg : " + listdata.getPolarImg();
             Log.d("", s);
-            imgPolar.setImageDrawable(context.getResources().getDrawable(CoolPolar[listdata.getPolarImg()]));
+            imgPolar.setImageDrawable(context.getResources().getDrawable(listdata.getPolarImg()));
         }
 
 
@@ -83,11 +87,17 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     //ArrayList로 선언된 list 변수에 목록을 채워주기 위함 다른방시으로 구현해도 됨
-    public void addItemToList(String name, String result){
+    public void addItemToList(String name, String result, int base, int polarImg, int profileImg){
         ListViewAdapterData listdata = new ListViewAdapterData();
 
+        listdata.setProfileImg(listdata.getRandomIndex());
         listdata.setName(name);
         listdata.setResult(result);
+        if(base == 0){
+            listdata.setPolarImg(WarmPolar[polarImg]);
+        }else{
+            listdata.setPolarImg(CoolPolar[polarImg]);
+        }
 
         //값들의 조립이 완성된 listdata객체 한개를 list배열에 추가
         list.add(listdata);
