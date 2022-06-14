@@ -2,6 +2,8 @@ package com.example.coloroidlove;
 
 import static android.hardware.Camera.CameraInfo.CAMERA_FACING_FRONT;
 
+import static java.lang.Thread.sleep;
+
 import androidx.annotation.NonNull;
 
 import android.Manifest;
@@ -11,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -56,8 +59,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             "#40388e", "#3ED186", "#af5463", "1C372E", "#9a9342", "#602F67"};
 
 
-    String[] WarmName = {"사랑스러운 봄라이트", "생기 있는 봄브라이트", "가을뮤트", "가을스트롱", "화려한 가을딥"};
-    String[] CoolName = {"싱그러운 여름라이트", "소프트한 여름뮤트", "여름 브라이트", "저명도뮤트", "깔끔한 겨울트루", "시원시원한 겨울브라이트", "도도한 겨울딥"};
+    String[] WarmName = {"사랑스러운 봄라이트", "생기 있는 봄브라이트", "내추럴한 가을 뮤트", "고급스러운 가을 스트롱", "화려한 가을딥"};
+    String[] CoolName = {"싱그러운 여름라이트", "소프트한 여름뮤트", "청량가득한 여름 브라이트", "부드러운 저명도 여름 뮤트", "깔끔한 겨울트루", "시원시원한 겨울브라이트", "도도한 겨울딥"};
 
     String[] SpringLight = {"#c087cb", "#a9d88a", "#ffeea0", "#fed4d5"};
     String[] SpringBright = {"#F23C13", "#FEAFA2", "#FFE10B", "#C98715"};
@@ -479,11 +482,16 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                         CoolTestYes();
                         break;
                     case 4:
+                        btnYes.setEnabled(false);
+                        btnNo.setEnabled(false);
                         intent.putExtra("닉네임", nickname);
                         intent.putExtra("퍼스널컬러", res);
                         intent.putExtra("베이스컬러", base);
                         intent.putExtra("컬러인덱스", index);
                         startActivity(intent);
+
+
+
                         break;
                 }
             }
@@ -506,11 +514,15 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                         CoolTestNo();
                         break;
                     case 4:
+                        btnYes.setEnabled(false);
+                        btnNo.setEnabled(false);
                         intent.putExtra("닉네임", nickname);
                         intent.putExtra("퍼스널컬러", res);
                         intent.putExtra("베이스컬러", base);
                         intent.putExtra("컬러인덱스", index);
                         startActivity(intent);
+
+
                         break;
                 }
             }
