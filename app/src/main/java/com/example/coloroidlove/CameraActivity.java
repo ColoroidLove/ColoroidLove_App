@@ -60,7 +60,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
 
     String[] WarmName = {"사랑스러운 봄라이트", "생기 있는 봄브라이트", "내추럴한 가을 뮤트", "고급스러운 가을 스트롱", "화려한 가을딥"};
-    String[] CoolName = {"싱그러운 여름라이트", "소프트한 여름뮤트", "청량가득한 여름 브라이트", "부드러운 저명도 여름 뮤트", "깔끔한 겨울트루", "시원시원한 겨울브라이트", "도도한 겨울딥"};
+    String[] CoolName = {"싱그러운 여름라이트", "소프트한 여름뮤트", "청량가득한 여름브라이트", "부드러운 저명도여름뮤트", "깔끔한 겨울트루", "시원시원한 겨울브라이트", "도도한 겨울딥"};
 
     String[] SpringLight = {"#c087cb", "#a9d88a", "#ffeea0", "#fed4d5"};
     String[] SpringBright = {"#F23C13", "#FEAFA2", "#FFE10B", "#C98715"};
