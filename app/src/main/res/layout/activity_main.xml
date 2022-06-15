@@ -10,12 +10,12 @@
         android:layout_height="300dp">
 
         <TextView
-            android:fontFamily="@font/csemibold"
+            android:fontFamily="@font/nanumr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="50dp"
-            android:text="What's\nYour\nColoroid\nLove?"
+            android:text="당신의\n컬러로이드\n러브를\n알아보세요."
             android:textSize="28dp" />
 
         <Button
@@ -44,7 +44,7 @@
             android:fontFamily="@font/nanumr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Now User's Coloroid Love"
+            android:text="우리들의 Coloroid Love"
             android:textSize="20dp"
             android:paddingTop="20dp"/>
 

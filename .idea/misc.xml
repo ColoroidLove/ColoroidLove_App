@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/StudioProjects/ColoroidLove_App/app/src/main/res/layout/activity_intro.xml" value="0.25" />
+        <entry key="..\:/Android/StudioProjects/ColoroidLove_App/app/src/main/res/layout/activity_intro1.xml" value="0.22" />
         <entry key="..\:/Android/StudioProjects/ColoroidLove_App/app/src/main/res/layout/activity_login.xml" value="0.11826857532379005" />
-        <entry key="..\:/Android/StudioProjects/ColoroidLove_App/app/src/main/res/layout/activity_main.xml" value="0.11980231765507839" />
+        <entry key="..\:/Android/StudioProjects/ColoroidLove_App/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Android/StudioProjects/ColoroidLove_App/app/src/main/res/layout/activity_result.xml" value="0.11468984321745058" />
         <entry key="..\:/Android/StudioProjects/ColoroidLove_App/app/src/main/res/layout/activity_splash.xml" value="0.2073087431693989" />
         <entry key="..\:/Android/StudioProjects/ColoroidLove_App/app/src/main/res/layout/activity_testnotice.xml" value="0.11826857532379005" />

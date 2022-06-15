@@ -24,10 +24,9 @@
         </activity>
 
 
-        <activity android:name=".JoinActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
+
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Testnotice"></activity>
+
         <activity android:name=".CameraActivity"
             android:exported="true">
             <intent-filter>
@@ -37,6 +36,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".IntroActivity"></activity>
     </application>
 
 </manifest>

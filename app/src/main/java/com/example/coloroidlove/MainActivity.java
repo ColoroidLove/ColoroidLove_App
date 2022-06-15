@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity {
         // *주의할 점: findViewById()를 쓸 때는 -> 앞에 반드시 다이얼로그 이름을 붙여야 한다.
 
         EditText nickname=dilaog01.findViewById(R.id.nickname);
-        Intent intent1 = new Intent(MainActivity.this, CameraActivity.class);
+        Intent intent1 = new Intent(MainActivity.this, IntroActivity.class);
 
         // 시작
         Button noBtn = dilaog01.findViewById(R.id.noBtn);

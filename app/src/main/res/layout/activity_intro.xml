@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_gradient">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <Button
+            android:id="@+id/btnJump"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:background="#00ff0000"
+            android:fontFamily="@font/nanumr"
+            android:text=">> 이야기 건너뛰기  "
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <ImageView
+
+            android:id="@+id/introImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/intro1" />
+
+        <TextView
+
+            android:id="@+id/txtTalk"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="150dp"
+            android:background="@color/white"
+            android:fontFamily="@font/nanumr"
+            android:gravity="center"
+            android:text="내일 처음으로 회사가는 날이다!"
+            android:textColor="@color/black"
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/btnNext"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="680dp"
+            android:background="@drawable/login_round_white"
+            android:fontFamily="@font/nanumr"
+            android:gravity="center"
+            android:text="다음으로"
+            android:textSize="20dp" />
+
+        <Button
+            android:visibility="invisible"
+            android:id="@+id/btnStart"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="680dp"
+            android:background="@drawable/login_round_white"
+            android:fontFamily="@font/nanumr"
+            android:gravity="center"
+            android:text="시작하기"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/txtDesc1"
+            android:visibility="invisible"
+            android:layout_marginTop="200dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+
+            android:fontFamily="@font/nanumr"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="퍼스널컬러 : \n개인이 가진 신체의 색과 어울리는 색."
+            />
+
+        <TextView
+            android:id="@+id/txtDesc2"
+            android:visibility="invisible"
+            android:layout_marginTop="250dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+
+            android:fontFamily="@font/nanumr"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용자에게 생기가 돌고 활기차 보이도록\n연출하는 이미지 관리 따위에 효과적이다."
+            />
+
+        <TextView
+            android:id="@+id/txtDesc3"
+            android:visibility="invisible"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:layout_marginTop="400dp"
+
+            android:fontFamily="@font/nanumr"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="컬러로이드 러브는 \n미림인들이 취업 후, 첫 출근에 대한 기대를\n저버리지 않도록 서비스를 제공합니다\n퍼스널컬러를 측정과\n정보를 제공하고 있습니다."
+            />
+    </FrameLayout>
+
+</LinearLayout>
