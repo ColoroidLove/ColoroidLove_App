@@ -44,7 +44,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     LinearLayout backcolor1, backcolor2;
     ImageView btnYes1, btnYes2;
     Button btnEnd;
-    TextView recommend, percent1, percent2;
+    TextView recommend, percent1, percent2, txtCount;
 
     String ment = "어울리는 컬러인가요?"; //추천 멘트 들어감
     int yPercent = 0; //예스 눌렀을 때 퍼센트
@@ -53,7 +53,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     String res = "";
     int base; // 0은 warm, 1은 cool
     int index;
-    int colorKey = 0;
+    int count = 1;
     //색깔 배열 홀수 웜 짝수 쿨
     String[] FirstColor = {"#fed4d5", "#C0BEB2", "#FEAFA2", "#84CAEB", "#FFE10B", "#7d7a99", "#017f73", "#f6335f",
             "#40388e", "#3ed186", "#af5463", "#33dbc1", "#9a9342", "#602F67"};
@@ -133,6 +133,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void FirstWarmTest() {
+        count++;
+        txtCount.setText(count+"/8");
 
         Warm++;
 
@@ -158,6 +160,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void FirstCoolTest() {
+        count++;
+        txtCount.setText(count+"/8");
 
         Cool++;
 
@@ -169,6 +173,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         //배열의 마지막 인덱스일 때 테스트 인덱스를 정해준다
 
         if (cnt == 14) {
+            count=0;
             cnt = 0;
             if (Warm > Cool || Warm == Cool) {
                 System.out.println("웜테스트 시작");
@@ -181,7 +186,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void SecondWarmTest1() {
-
+        count++;
+        txtCount.setText(count+"/10");
 
         backcolor1.setBackgroundColor(Color.parseColor(WarmColor[cnt]));
         backcolor2.setBackgroundColor(Color.parseColor(WarmColor[cnt+1]));
@@ -212,10 +218,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void SecondWarmTest2() {
-
-
-
-
+        count++;
+        txtCount.setText(count+"/10");
 
         backcolor1.setBackgroundColor(Color.parseColor(WarmColor[cnt]));
         backcolor2.setBackgroundColor(Color.parseColor(WarmColor[cnt+1]));
@@ -245,7 +249,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void SecondCoolTest1() {
-
+        count++;
+        txtCount.setText(count+"/14");
 
         backcolor1.setBackgroundColor(Color.parseColor(CoolColor[cnt]));
         backcolor2.setBackgroundColor(Color.parseColor(CoolColor[cnt+1]));
@@ -278,8 +283,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void SecondCoolTest2() {
-
-
+        count++;
+        txtCount.setText(count+"/14");
 
         backcolor1.setBackgroundColor(Color.parseColor(CoolColor[cnt]));
         backcolor2.setBackgroundColor(Color.parseColor(CoolColor[cnt+1]));
@@ -322,14 +327,14 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
 
 
-        //권한체크
+  /*      //권한체크
         TedPermission.with(getApplicationContext())
                 .setPermissionListener(permissionListener)
                 .setRationaleMessage("카메라 권한이 필요합니다.")
                 .setDeniedMessage("허용합니다.")
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
-
+*/
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
         surfaceView = (SurfaceView) findViewById(R.id.surfaceview);
@@ -354,7 +359,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         recommend = viewControl.findViewById(R.id.recommend);
         percent1 = viewControl.findViewById(R.id.percent1);
         percent2 = viewControl.findViewById(R.id.percent2);
-
+        txtCount=viewControl.findViewById(R.id.txtCount);
         Dialog dilaog02;
 
         dilaog02 = new Dialog(CameraActivity.this);       // Dialog 초기화
@@ -532,7 +537,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         //나중에 권한 수정하기
         @Override
         public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-            Toast.makeText(getApplicationContext(), "권한이 허용됨", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "권한 불허가", Toast.LENGTH_SHORT).show();
         }
     };
 
