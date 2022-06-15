@@ -21,6 +21,8 @@ public class IntroActivity extends AppCompatActivity {
     int count=0; //상황 인덱스
     Animation animation; //애니메이션 변수
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,12 @@ public class IntroActivity extends AppCompatActivity {
         btnJump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent1 = getIntent(); //과거 인텐트
+
+                String nickname = intent1.getStringExtra("닉네임");
+                System.out.println("닉네임 값 확인 : " + nickname);
                 Intent intent = new Intent(getApplicationContext(),CameraActivity.class);
+                intent.putExtra("닉네임", nickname);
                 startActivity(intent);
             }
         });
@@ -51,7 +58,12 @@ public class IntroActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent1 = getIntent(); //과거 인텐트
+
+                String nickname = intent1.getStringExtra("닉네임");
+                System.out.println("닉네임 값 확인 : " + nickname);
                 Intent intent = new Intent(getApplicationContext(),CameraActivity.class);
+                intent.putExtra("닉네임", nickname);
                 startActivity(intent);
             }
         });
@@ -79,14 +91,12 @@ public class IntroActivity extends AppCompatActivity {
                         animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.alpha);
                         introImg.setImageResource(R.drawable.intro3); break;
                     case 4:
-                        //화장중 문구샤삭 스레드 넣기
                         txtTalk.setText("이게 뭐야 안어울리잖아!");
                         introImg.setImageResource(R.drawable.intro4);
                         animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.alpha);
                         introImg.startAnimation(animation);
                         break;
                     case 5:
-                        //눈물 좔좔 흐르기
                         txtTalk.setText("내 퍼스널컬러는 대체 뭐야?");
                         introImg.setImageResource(R.drawable.intro5);
                         animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.alpha);
@@ -94,7 +104,6 @@ public class IntroActivity extends AppCompatActivity {
                         break;
 
                     case 6:
-                        //폰 목업 이미지
                         txtTalk.setText("맞아 나에겐 컬러럽이 있지!");
                         introImg.setImageResource(R.drawable.intro6);
                         animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.alpha);

@@ -41,10 +41,10 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     SurfaceHolder surfaceHolder;
     boolean previewing = false;
     LayoutInflater controlInflater = null;
-    LinearLayout backcolor;
-    ImageView btnYes, btnNo;
+    LinearLayout backcolor1, backcolor2;
+    ImageView btnYes1, btnYes2;
     Button btnEnd;
-    TextView recommend, yes_percent, no_percent;
+    TextView recommend, percent1, percent2;
 
     String ment = "어울리는 컬러인가요?"; //추천 멘트 들어감
     int yPercent = 0; //예스 눌렀을 때 퍼센트
@@ -53,12 +53,28 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     String res = "";
     int base; // 0은 warm, 1은 cool
     int index;
-
+    int colorKey = 0;
     //색깔 배열 홀수 웜 짝수 쿨
-    String[] FirstColor = {" ", "#fed4d5", "#C0BEB2", "#FEAFA2", "#84CAEB", "#FFE10B", "#7d7a99", "#017f73", "#f6335f",
-            "#40388e", "#3ED186", "#af5463", "1C372E", "#9a9342", "#602F67"};
+    String[] FirstColor = {"#fed4d5", "#C0BEB2", "#FEAFA2", "#84CAEB", "#FFE10B", "#7d7a99", "#017f73", "#f6335f",
+            "#40388e", "#3ed186", "#af5463", "#33dbc1", "#9a9342", "#602F67"};
 
 
+    String[] WarmColor = {
+            "#c087cb", "#FEAFA2", "#af5463", "#40388e", "#9f0040",
+            "#a9d88a", "#FFE10B", "#936b52", "#017f73", "#49014D",
+            "#ffeea0", "#C98715", "#9a9342", "#fe3018", "#015641",
+            "#fed4d5", "#C98715", "#375c77", "#e8bb24", "#b58700"
+    };
+
+    String[] CoolColor = {
+            "#C0BEB2", "#84CAEB", "#33CFC4", "#F5A9B6", //여름라이트
+            "#7E465A", "#584865", "#7C798B", "#D29AB3", //여름뮤트
+            "#f6335f", "#ff9aca", "#5b72fe", "#33dbc1", //여름브라이트
+            "#e4a6b1", "#8fbdd4", "#7d7a99", "#3da8a0", //저명도 여름 뮤트
+            "#3B4346", "#3ed186", "#a8e8ef", "#d9364e", //겨울쿨
+            "#d7d1ed", "#1fa793", "#602f67", "#2f2f6d", //겨울브라이트
+            "#000000", "#283025", "#1c6a98", "#9e2532" //겨울딥
+    };
     String[] WarmName = {"사랑스러운 봄라이트", "생기 있는 봄브라이트", "내추럴한 가을 뮤트", "고급스러운 가을 스트롱", "화려한 가을딥"};
     String[] CoolName = {"싱그러운 여름라이트", "소프트한 여름뮤트", "청량가득한 여름브라이트", "부드러운 저명도여름뮤트", "깔끔한 겨울트루", "시원시원한 겨울브라이트", "도도한 겨울딥"};
 
@@ -79,7 +95,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     String[] WinterDeep = {"#000000", "#283025", "#1c6a98", "#9e2532"};
 
 
-    int cnt = 1; //각 테스트 배열 인덱스 증가
+    int cnt = 0; //각 테스트 배열 인덱스 증가
     int btnCount = 0; //다음배열으로 넘어갈 때 인덱스
     int Warm = 0;
     int Cool = 0;
@@ -116,51 +132,43 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
     }
 
-    public void FirstTestYes() {
+    public void FirstWarmTest() {
 
-
-        //멘트 추천
-        if (Warm > Cool)
-            ment = "현재 웜에 가까워요!";
-        else if (Warm < Cool) ment = "현재 쿨에 가까워요!";
-        else ment = "어울리는 컬러인가요?";
-
-
-        //인덱스 홀짝
-        if ((cnt - 1) % 2 == 0) Warm++;
-        else Cool++;
+        Warm++;
 
         System.out.println("웜 : " + Warm);
         System.out.println("쿨 : " + Cool);
-        backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
 
-        if (cnt == 11) {
+        backcolor1.setBackgroundColor(Color.parseColor(FirstColor[cnt]));
+        backcolor2.setBackgroundColor(Color.parseColor(FirstColor[cnt+1]));
+        cnt+=2;
+
+
+        if (cnt == 14) {
             cnt = 0;
-            if (Warm > Cool) { //if(Warm>Cool || Warm==Cool) {
+            if (Warm > Cool || Warm == Cool) {
                 System.out.println("웜테스트 시작");
                 chkTest = 2;
             } else {
                 System.out.println("쿨테스트 시작");
-                chkTest = 2;
                 chkTest = 3;
             }
         }
 
     }
 
-    public void FirstTestNo() {
+    public void FirstCoolTest() {
 
-        //멘트 추천
-        if (Warm > Cool)
-            ment = "현재 웜에 가까워요!";
-        else if (Warm < Cool) ment = "현재 쿨에 가까워요!";
-        else ment = "어울리는 컬러인가요?";
+        Cool++;
 
+        System.out.println("웜 : " + Warm);
+        System.out.println("쿨 : " + Cool);
+        backcolor1.setBackgroundColor(Color.parseColor(FirstColor[cnt]));
+        backcolor2.setBackgroundColor(Color.parseColor(FirstColor[cnt+1]));
+        cnt+=2;
+        //배열의 마지막 인덱스일 때 테스트 인덱스를 정해준다
 
-        //인덱스 홀짝
-        backcolor.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
-
-        if (cnt == 11) {
+        if (cnt == 13) {
             cnt = 0;
             if (Warm > Cool || Warm == Cool) {
                 System.out.println("웜테스트 시작");
@@ -172,49 +180,26 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         }
     }
 
-    public void WarmTestYes() {
-        yes_percent.setVisibility(View.VISIBLE);
-        no_percent.setVisibility(View.VISIBLE);
-        //멘트 추천
-        if (yPercent > nPercent)
-            ment = "이 컬러 어울리는거 같아요!";
-        else if (yPercent < nPercent) ment = "이 컬러는 비추!";
-        else ment = "어울리는 컬러인가요?";
+    public void SecondWarmTest1() {
 
-        if (cnt == 4) {
-            cnt = 0;
-            yPercent = 0;
-            nPercent = 0;
+        if (WarmColor.length == 20) {
+            chkTest=4;
+            ColorSort(warmCount, chkTest);
         }
 
-        switch (btnCount / 4) {
-            case 0:
-                backcolor.setBackgroundColor(Color.parseColor(SpringLight[cnt++]));
-                warmCount[0]++;
-                yPercent += 25;
-                break;
-            case 1:
-                backcolor.setBackgroundColor(Color.parseColor(SpringBright[cnt++]));
-                warmCount[1]++;
-                yPercent += 25;
-                break;
-            case 2:
-                backcolor.setBackgroundColor(Color.parseColor(FallMute[cnt++]));
-                warmCount[2]++;
-                yPercent += 25;
-                break;
-            case 3:
-                backcolor.setBackgroundColor(Color.parseColor(FallStrong[cnt++]));
-                warmCount[3]++;
-                yPercent += 25;
-                break;
-            case 4:
-                backcolor.setBackgroundColor(Color.parseColor(FallDeep[cnt++]));
-                warmCount[4]++;
-                yPercent += 25;
-                break;
+        backcolor1.setBackgroundColor(Color.parseColor(WarmColor[cnt]));
+        backcolor2.setBackgroundColor(Color.parseColor(WarmColor[cnt+1]));
+        cnt+=2;
+        warmCount[btnCount]++;
+        System.out.println("버튼 : "+btnCount);
+        btnCount+=2;
+
+        if(btnCount==6){
+            btnCount=1;
         }
-        btnCount++;
+        else if(btnCount==5){
+            btnCount=0;
+        }
 
 
         System.out.println("봄라이트 : " + warmCount[0]);
@@ -223,184 +208,79 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         System.out.println("가을스트롱 : " + warmCount[3]);
         System.out.println("가을딥 : " + warmCount[4]);
 
-        if (btnCount == 21) ColorSort(warmCount, chkTest);
+
 
 
     }
 
-    public void WarmTestNo() {
-        yes_percent.setVisibility(View.VISIBLE);
-        no_percent.setVisibility(View.VISIBLE);
-        if (yPercent > nPercent)
-            ment = "이 컬러 어울리는거 같아요!";
-        else if (yPercent < nPercent) ment = "이 컬러는 비추!";
-        else ment = "어울리는 컬러인가요?";
+    public void SecondWarmTest2() {
 
-        if (cnt == 4) {
-            cnt = 0;
-            yPercent = 0;
-            nPercent = 0;
+        backcolor1.setBackgroundColor(Color.parseColor(WarmColor[cnt]));
+        backcolor2.setBackgroundColor(Color.parseColor(WarmColor[cnt+1]));
+        cnt+=2;
+        warmCount[btnCount+1]++;
+        btnCount+=2;
+
+        if(btnCount==6){
+            btnCount=1;
+        }
+        else if(btnCount==5){
+            btnCount=0;
         }
 
-        switch (btnCount / 4) {
-            case 0:
-                backcolor.setBackgroundColor(Color.parseColor(SpringLight[cnt++]));
-                nPercent += 25;
-                break;
-            case 1:
-                backcolor.setBackgroundColor(Color.parseColor(SpringBright[cnt++]));
-                nPercent += 25;
-                break;
-            case 2:
-                backcolor.setBackgroundColor(Color.parseColor(FallMute[cnt++]));
-                nPercent += 25;
-                break;
-            case 3:
-                backcolor.setBackgroundColor(Color.parseColor(FallStrong[cnt++]));
-                nPercent += 25;
-                break;
-            case 4:
-                backcolor.setBackgroundColor(Color.parseColor(FallDeep[cnt++]));
-                nPercent += 25;
-                break;
-        }
-        btnCount++;
 
         System.out.println("봄라이트 : " + warmCount[0]);
         System.out.println("봄브라이트 : " + warmCount[1]);
         System.out.println("가을뮤트 : " + warmCount[2]);
         System.out.println("가을스트롱 : " + warmCount[3]);
         System.out.println("가을딥 : " + warmCount[4]);
-        if (btnCount == 21) ColorSort(warmCount, chkTest);
+        if (WarmColor.length == 21) {
+            chkTest=4;
+            ColorSort(warmCount, chkTest);
+        }
+
     }
 
-    public void CoolTestYes() {
-        yes_percent.setVisibility(View.VISIBLE);
-        no_percent.setVisibility(View.VISIBLE);
-        if (yPercent > nPercent)
-            ment = "이 컬러 어울리는거 같아요!";
-        else if (yPercent < nPercent) ment = "이 컬러는 비추!";
-        else ment = "어울리는 컬러인가요?";
-        if (cnt == 4) {
-            cnt = 0;
-            yPercent = 0;
-            nPercent = 0;
-        }
+    public void SecondCoolTest1() {
 
-        switch (btnCount / 4) {
-            case 0:
-                backcolor.setBackgroundColor(Color.parseColor(SummerLight[cnt++]));
-                coolCount[0]++;
-                yPercent += 25;
-                break;
-            case 1:
-                backcolor.setBackgroundColor(Color.parseColor(SummerMute[cnt++]));
-                coolCount[1]++;
-                yPercent += 25;
-                break;
-            case 2:
-                backcolor.setBackgroundColor(Color.parseColor(SummerBright[cnt++]));
-                coolCount[2]++;
-                yPercent += 25;
-                break;
-            case 3:
-                backcolor.setBackgroundColor(Color.parseColor(SummerLowBrightMute[cnt++]));
-                coolCount[3]++;
-                yPercent += 25;
-                break;
-            case 4:
-                backcolor.setBackgroundColor(Color.parseColor(WinterTrue[cnt++]));
-                coolCount[4]++;
-                yPercent += 25;
-                break;
-            case 5:
-                backcolor.setBackgroundColor(Color.parseColor(WinterBright[cnt++]));
-                coolCount[5]++;
-                yPercent += 25;
-                break;
-            case 6:
-                backcolor.setBackgroundColor(Color.parseColor(WinterDeep[cnt++]));
-                coolCount[6]++;
-                yPercent += 25;
-                break;
 
+        if (colorKey == 5) {
+            colorKey = 0;
         }
+        backcolor1.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
+        backcolor2.setBackgroundColor(Color.parseColor(FirstColor[cnt+1]));
+        warmCount[colorKey++]++;
         btnCount++;
-        System.out.println("여름라이트 : " + coolCount[0]);
-        System.out.println("여름뮤트 : " + coolCount[1]);
-        System.out.println("여름브라이트 : " + coolCount[2]);
-        System.out.println("저명도뮤트 : " + coolCount[3]);
-        System.out.println("윈터트루 : " + coolCount[4]);
-        System.out.println("윈터브라이트 : " + coolCount[5]);
-        System.out.println("윈터딥 : " + coolCount[6]);
-        if (btnCount == 29) ColorSort(coolCount, chkTest);
+
+
     }
 
-    public void CoolTestNo() {
-        yes_percent.setVisibility(View.VISIBLE);
-        no_percent.setVisibility(View.VISIBLE);
+    public void SecondCoolTest2() {
 
-        if (yPercent > nPercent)
-            ment = "이 컬러 어울리는거 같아요!";
-        else if (yPercent < nPercent) ment = "이 컬러는 비추!";
-        else ment = "어울리는 컬러인가요?";
-        if (cnt == 4) {
-            cnt = 0;
-            yPercent = 0;
-            nPercent = 0;
+        if (colorKey == 5) {
+            colorKey = 0;
         }
 
-        switch (btnCount / 4) {
-            case 0:
-                backcolor.setBackgroundColor(Color.parseColor(SummerLight[cnt++]));
-                nPercent += 25;
-                break;
-            case 1:
-                backcolor.setBackgroundColor(Color.parseColor(SummerMute[cnt++]));
-                nPercent += 25;
-                break;
-            case 2:
-                backcolor.setBackgroundColor(Color.parseColor(SummerBright[cnt++]));
-                nPercent += 25;
-                break;
-            case 3:
-                backcolor.setBackgroundColor(Color.parseColor(SummerLowBrightMute[cnt++]));
-                nPercent += 25;
-                break;
-            case 4:
-                backcolor.setBackgroundColor(Color.parseColor(WinterTrue[cnt++]));
-                nPercent += 25;
-                break;
-            case 5:
-                backcolor.setBackgroundColor(Color.parseColor(WinterBright[cnt++]));
-                nPercent += 25;
-                break;
-            case 6:
-                backcolor.setBackgroundColor(Color.parseColor(WinterDeep[cnt++]));
-                nPercent += 25;
-                break;
-
-        }
+        backcolor1.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
+        backcolor2.setBackgroundColor(Color.parseColor(FirstColor[cnt+1]));
+        warmCount[colorKey++]++;
         btnCount++;
-        System.out.println("여름라이트 : " + coolCount[0]);
-        System.out.println("여름뮤트 : " + coolCount[1]);
-        System.out.println("여름브라이트 : " + coolCount[2]);
-        System.out.println("저명도뮤트 : " + coolCount[3]);
-        System.out.println("윈터트루 : " + coolCount[4]);
-        System.out.println("윈터브라이트 : " + coolCount[5]);
-        System.out.println("윈터딥 : " + coolCount[6]);
-        if (btnCount == 29) ColorSort(coolCount, chkTest);
+
+
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         Intent intent1 = getIntent(); //과거 인텐트
+
         String nickname = intent1.getStringExtra("닉네임");
+        System.out.println("닉네임 값 확인 : " + nickname);
 
         Intent intent = new Intent(CameraActivity.this, ResultActivity.class);
-        System.out.println("닉네임 값 확인 : " + nickname);
+
 
 
         //권한체크
@@ -427,13 +307,14 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                 ViewGroup.LayoutParams.FILL_PARENT);
         this.addContentView(viewControl, layoutParamsControl);
 
-        backcolor = viewControl.findViewById(R.id.backcolor);
-        btnYes = viewControl.findViewById(R.id.btnYes);
-        btnNo = viewControl.findViewById(R.id.btnNo);
+        backcolor1 = viewControl.findViewById(R.id.backcolor1);
+        backcolor2 = viewControl.findViewById(R.id.backcolor2);
+        btnYes1 = viewControl.findViewById(R.id.btnYes1);
+        btnYes2 = viewControl.findViewById(R.id.btnYes2);
         btnEnd = viewControl.findViewById(R.id.btnEnd);
         recommend = viewControl.findViewById(R.id.recommend);
-        yes_percent = viewControl.findViewById(R.id.yes_percent);
-        no_percent = viewControl.findViewById(R.id.no_percent);
+        percent1 = viewControl.findViewById(R.id.percent1);
+        percent2 = viewControl.findViewById(R.id.percent2);
 
         Dialog dilaog02;
 
@@ -465,57 +346,29 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             }
         });
 
-        btnYes.setOnClickListener(new View.OnClickListener() {
+        btnYes1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 recommend.setText(ment);
-                yes_percent.setText(yPercent + "%");
-                no_percent.setText(nPercent + "%");
+/*                yes_percent.setText(yPercent + "%");
+                no_percent.setText(nPercent + "%");*/
                 switch (chkTest) {
                     case 1:
-                        FirstTestYes();
+                        FirstWarmTest();
                         break;
                     case 2:
-                        WarmTestYes();
+
+                        SecondWarmTest1();
+
                         break;
                     case 3:
-                        CoolTestYes();
+                        SecondCoolTest1();
                         break;
                     case 4:
-                        btnYes.setEnabled(false);
-                        btnNo.setEnabled(false);
-                        intent.putExtra("닉네임", nickname);
-                        intent.putExtra("퍼스널컬러", res);
-                        intent.putExtra("베이스컬러", base);
-                        intent.putExtra("컬러인덱스", index);
-                        startActivity(intent);
-
-
-
-                        break;
-                }
-            }
-        });
-
-        btnNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recommend.setText(ment);
-                yes_percent.setText(yPercent + "%");
-                no_percent.setText(nPercent + "%");
-                switch (chkTest) {
-                    case 1:
-                        FirstTestNo();
-                        break;
-                    case 2:
-                        WarmTestNo();
-                        break;
-                    case 3:
-                        CoolTestNo();
-                        break;
-                    case 4:
-                        btnYes.setEnabled(false);
-                        btnNo.setEnabled(false);
+                        btnYes1.setEnabled(false);
+                        btnYes2.setEnabled(false);
                         intent.putExtra("닉네임", nickname);
                         intent.putExtra("퍼스널컬러", res);
                         intent.putExtra("베이스컬러", base);
@@ -528,6 +381,37 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             }
         });
 
+
+        btnYes2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recommend.setText(ment);
+/*                yes_percent.setText(yPercent + "%");
+                no_percent.setText(nPercent + "%");*/
+                switch (chkTest) {
+                    case 1:
+                        FirstCoolTest();;
+                        break;
+                    case 2:
+                        SecondWarmTest2();
+                        break;
+                    case 3:
+                        SecondCoolTest2();
+                        break;
+                    case 4:
+                        btnYes1.setEnabled(false);
+                        btnYes2.setEnabled(false);
+                        intent.putExtra("닉네임", nickname);
+                        intent.putExtra("퍼스널컬러", res);
+                        intent.putExtra("베이스컬러", base);
+                        intent.putExtra("컬러인덱스", index);
+                        startActivity(intent);
+
+
+                        break;
+                }
+            }
+        });
 
     }
 
