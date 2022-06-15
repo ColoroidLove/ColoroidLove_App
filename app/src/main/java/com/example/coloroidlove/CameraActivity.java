@@ -59,6 +59,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             "#40388e", "#3ed186", "#af5463", "#33dbc1", "#9a9342", "#602F67"};
 
 
+
+    //봄라이트, 봄브라이트, 가을뮤트, 가을스트롱, 가을딥
     String[] WarmColor = {
             "#c087cb", "#FEAFA2", "#af5463", "#40388e", "#9f0040",
             "#a9d88a", "#FFE10B", "#936b52", "#017f73", "#49014D",
@@ -66,14 +68,12 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
             "#fed4d5", "#C98715", "#375c77", "#e8bb24", "#b58700"
     };
 
+    //여름라이트, 여름뮤트, 여름브라이트, 저명도여름뮤트, 겨울트루, 겨울브라이트, 겨울딥
     String[] CoolColor = {
-            "#C0BEB2", "#84CAEB", "#33CFC4", "#F5A9B6", //여름라이트
-            "#7E465A", "#584865", "#7C798B", "#D29AB3", //여름뮤트
-            "#f6335f", "#ff9aca", "#5b72fe", "#33dbc1", //여름브라이트
-            "#e4a6b1", "#8fbdd4", "#7d7a99", "#3da8a0", //저명도 여름 뮤트
-            "#3B4346", "#3ed186", "#a8e8ef", "#d9364e", //겨울쿨
-            "#d7d1ed", "#1fa793", "#602f67", "#2f2f6d", //겨울브라이트
-            "#000000", "#283025", "#1c6a98", "#9e2532" //겨울딥
+            "#C0BEB2","#7E465A","#f6335f","#e4a6b1","#3B4346","#d7d1ed","#000000",
+            "#84CAEB","#584865","#ff9aca","#8fbdd4","#3ed186","#1fa793","#283025",
+            "#33CFC4","#7C798B","#5b72fe","#7d7a99","#a8e8ef","#602f67","#1c6a98",
+            "#F5A9B6","#D29AB3","#33dbc1","#3da8a0","#d9364e","#2f2f6d","#9e2532"
     };
     String[] WarmName = {"사랑스러운 봄라이트", "생기 있는 봄브라이트", "내추럴한 가을 뮤트", "고급스러운 가을 스트롱", "화려한 가을딥"};
     String[] CoolName = {"싱그러운 여름라이트", "소프트한 여름뮤트", "청량가득한 여름브라이트", "부드러운 저명도여름뮤트", "깔끔한 겨울트루", "시원시원한 겨울브라이트", "도도한 겨울딥"};
@@ -168,7 +168,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         cnt+=2;
         //배열의 마지막 인덱스일 때 테스트 인덱스를 정해준다
 
-        if (cnt == 13) {
+        if (cnt == 14) {
             cnt = 0;
             if (Warm > Cool || Warm == Cool) {
                 System.out.println("웜테스트 시작");
@@ -182,10 +182,6 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
     public void SecondWarmTest1() {
 
-        if (WarmColor.length == 20) {
-            chkTest=4;
-            ColorSort(warmCount, chkTest);
-        }
 
         backcolor1.setBackgroundColor(Color.parseColor(WarmColor[cnt]));
         backcolor2.setBackgroundColor(Color.parseColor(WarmColor[cnt+1]));
@@ -209,16 +205,22 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         System.out.println("가을딥 : " + warmCount[4]);
 
 
-
+        if (WarmColor.length == cnt) {
+            ColorSort(warmCount, chkTest);
+        }
 
     }
 
     public void SecondWarmTest2() {
 
+
+
+
+
         backcolor1.setBackgroundColor(Color.parseColor(WarmColor[cnt]));
         backcolor2.setBackgroundColor(Color.parseColor(WarmColor[cnt+1]));
         cnt+=2;
-        warmCount[btnCount+1]++;
+        warmCount[btnCount]++;
         btnCount+=2;
 
         if(btnCount==6){
@@ -234,39 +236,76 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         System.out.println("가을뮤트 : " + warmCount[2]);
         System.out.println("가을스트롱 : " + warmCount[3]);
         System.out.println("가을딥 : " + warmCount[4]);
-        if (WarmColor.length == 21) {
-            chkTest=4;
+
+        if (WarmColor.length == cnt) {
             ColorSort(warmCount, chkTest);
         }
+
 
     }
 
     public void SecondCoolTest1() {
 
 
-        if (colorKey == 5) {
-            colorKey = 0;
-        }
-        backcolor1.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
-        backcolor2.setBackgroundColor(Color.parseColor(FirstColor[cnt+1]));
-        warmCount[colorKey++]++;
-        btnCount++;
+        backcolor1.setBackgroundColor(Color.parseColor(CoolColor[cnt]));
+        backcolor2.setBackgroundColor(Color.parseColor(CoolColor[cnt+1]));
+        cnt+=2;
+        coolCount[btnCount]++;
+        btnCount+=2;
 
+
+        if(btnCount==6){
+            btnCount=1;
+        }
+        else if(btnCount==5){
+            btnCount=0;
+        }
+
+        System.out.println("여름라이트 : " + coolCount[0]);
+        System.out.println("여름뮤트 : " + coolCount[1]);
+        System.out.println("여름브라이트 : " + coolCount[2]);
+        System.out.println("저명도뮤트 : " + coolCount[3]);
+        System.out.println("윈터트루 : " + coolCount[4]);
+        System.out.println("윈터브라이트 : " + coolCount[5]);
+        System.out.println("윈터딥 : " + coolCount[6]);
+
+
+
+        if (CoolColor.length == cnt) {
+            ColorSort(coolCount, chkTest);
+        }
 
     }
 
     public void SecondCoolTest2() {
 
-        if (colorKey == 5) {
-            colorKey = 0;
+
+
+        backcolor1.setBackgroundColor(Color.parseColor(CoolColor[cnt]));
+        backcolor2.setBackgroundColor(Color.parseColor(CoolColor[cnt+1]));
+        cnt+=2;
+        coolCount[btnCount]++;
+        btnCount+=2;
+
+
+        if(btnCount==6){
+            btnCount=1;
+        }
+        else if(btnCount==5){
+            btnCount=0;
         }
 
-        backcolor1.setBackgroundColor(Color.parseColor(FirstColor[cnt++]));
-        backcolor2.setBackgroundColor(Color.parseColor(FirstColor[cnt+1]));
-        warmCount[colorKey++]++;
-        btnCount++;
+        System.out.println("여름라이트 : " + coolCount[0]);
+        System.out.println("여름뮤트 : " + coolCount[1]);
+        System.out.println("여름브라이트 : " + coolCount[2]);
+        System.out.println("저명도뮤트 : " + coolCount[3]);
+        System.out.println("윈터트루 : " + coolCount[4]);
+        System.out.println("윈터브라이트 : " + coolCount[5]);
+        System.out.println("윈터딥 : " + coolCount[6]);
 
-
+        if (CoolColor.length == cnt) {
+            ColorSort(coolCount, chkTest);
+        }
     }
 
 
@@ -359,9 +398,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                         FirstWarmTest();
                         break;
                     case 2:
-
                         SecondWarmTest1();
-
                         break;
                     case 3:
                         SecondCoolTest1();
@@ -390,7 +427,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
                 no_percent.setText(nPercent + "%");*/
                 switch (chkTest) {
                     case 1:
-                        FirstCoolTest();;
+                        FirstCoolTest();
                         break;
                     case 2:
                         SecondWarmTest2();

@@ -12,7 +12,7 @@
         <ImageView
             android:id="@+id/res_img"
             android:layout_width="match_parent"
-            android:layout_height="279dp"
+            android:layout_height="277dp"
             android:src="@drawable/result_springlight" />
 
         <TextView
