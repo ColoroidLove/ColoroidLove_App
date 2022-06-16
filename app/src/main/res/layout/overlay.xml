@@ -25,7 +25,7 @@
 
 
         <TextView
-            android:id="@+id/recommend"
+            android:id="@+id/txtMent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="30dp"
@@ -36,7 +36,6 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,16 +71,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/percent1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/nanumr"
-                    android:text="00%"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -111,7 +101,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="60dp"
                     android:elevation="10dp"
                     app:cardCornerRadius="100dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -132,17 +122,7 @@
                 </androidx.cardview.widget.CardView>
 
 
-                <TextView
-                    android:id="@+id/percent2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/nanumr"
-                    android:text="00%"
-                    android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+
 
 
             </LinearLayout>

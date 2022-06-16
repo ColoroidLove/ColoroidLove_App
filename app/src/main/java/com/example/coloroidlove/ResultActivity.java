@@ -29,7 +29,7 @@ public class ResultActivity  extends BaseActivity {
     // 결과 프로필 배열
     Integer[] reusltWarmImg = {R.drawable.result_springlight, R.drawable.result_springlight,
             R.drawable.result_fallmute, R.drawable.result_fallstrong, R.drawable.result_falldeep}; // 웜 결과 이미지
-    Integer[] reusltCoolImg = {R.drawable.result_springlight, R.drawable.result_summermute, R.drawable.result_summerbright, R.drawable.result_summerlowbrightmute,
+    Integer[] reusltCoolImg = {R.drawable.result_summerlight, R.drawable.result_summermute, R.drawable.result_summerbright, R.drawable.result_summerlowbrightmute,
             R.drawable.result_wintertrue,   R.drawable.result_winterbright,  R.drawable.result_winterdeep}; // 쿨 결과 이미지
 
     // 결과 자세한 설명
@@ -39,12 +39,7 @@ public class ResultActivity  extends BaseActivity {
      가을뮤트, 가을스트롱, 가을딥
      겨울트루, 겨울브라이트, 겨울딥
      */
-    // insert에 들어가야할 사진(폴라)
-    Integer[] WarmPolar = {R.drawable.polar_springlight, R.drawable.polar_springbright,
-            R.drawable.polar_fallmute, R.drawable.polar_fallstrong, R.drawable.polar_falldeep};
-    Integer[] CoolPolar = {
-            R.drawable.polar_summerlight, R.drawable.polar_summermute, R.drawable.polar_summerbright, R.drawable.polar_summerlowerbrightmute,
-            R.drawable.polar_wintertrue, R.drawable.polar_winterbright, R.drawable.polar_winterdeep};
+
 
 
     // 출력

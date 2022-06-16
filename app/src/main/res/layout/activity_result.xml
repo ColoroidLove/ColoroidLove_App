@@ -50,6 +50,7 @@
             android:textSize="17dp" />
 
         <TextView
+
             android:textColor="@color/black"
             android:background="#F1F1F1"
             android:id="@+id/res_artist"
@@ -57,7 +58,7 @@
             android:layout_width="370dp"
             android:layout_height="40dp"
             android:paddingTop="12dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:paddingLeft="20dp"
             android:fontFamily="@font/nanumr"
             android:text="대표적인 연예인 : 장원영, 유예영, 조해정, 선우"
@@ -71,7 +72,7 @@
             android:layout_width="370dp"
             android:layout_height="40dp"
             android:paddingTop="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
             android:fontFamily="@font/nanumr"
             android:text="추천 아이템 : 블랙헤어컬러, 실버 악세사리"
@@ -85,7 +86,7 @@
             android:layout_width="370dp"
             android:layout_height="40dp"
             android:paddingTop="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
             android:fontFamily="@font/nanumr"
             android:text="추천 컬러 : 파스텔블루, 블랙, 실버, 파스텔핑크"
@@ -93,7 +94,7 @@
 
         <TextView
             android:textColor="@color/black"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="70dp"
             android:id="@+id/res_web"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
