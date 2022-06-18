@@ -5,6 +5,7 @@ import static java.lang.Thread.sleep;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,11 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class IntroActivity extends AppCompatActivity {
 
-    ImageView introImg;
-    TextView txtTalk, txtDesc1, txtDesc2, txtDesc3;
+    ImageView introImg,heartImg;
+    TextView txtTalk, txtDesc1, txtDesc2, txtDesc3, txtDesc4, txtDesc5;
     Button btnJump, btnNext, btnStart;
     int count = 0; //상황 인덱스
-    Animation animation; //애니메이션 변수
+    Animation animation, txtAnimation; //애니메이션 변수
     MediaPlayer mediaPlayer, mediaPlayer1, mediaPlayer2, mediaPlayer3;
 
 
@@ -29,10 +30,13 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
         introImg = findViewById(R.id.introImg);
+        heartImg = findViewById(R.id.heartImg);
         txtTalk = findViewById(R.id.txtTalk);
         txtDesc1 = findViewById(R.id.txtDesc1);
         txtDesc2 = findViewById(R.id.txtDesc2);
         txtDesc3 = findViewById(R.id.txtDesc3);
+        txtDesc4 = findViewById(R.id.txtDesc4);
+        txtDesc5 = findViewById(R.id.txtDesc5);
         btnJump = findViewById(R.id.btnJump);
         btnNext = findViewById(R.id.btnNext);
         btnStart = findViewById(R.id.btnStart);
@@ -52,7 +56,7 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = getIntent(); //과거 인텐트
-
+                mediaPlayer.stop();
                 String nickname = intent1.getStringExtra("닉네임");
                 System.out.println("닉네임 값 확인 : " + nickname);
                 Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
@@ -67,7 +71,7 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = getIntent(); //과거 인텐트
-
+                mediaPlayer.stop();
                 String nickname = intent1.getStringExtra("닉네임");
                 System.out.println("닉네임 값 확인 : " + nickname);
                 Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
@@ -86,12 +90,12 @@ public class IntroActivity extends AppCompatActivity {
                         mediaPlayer.start();
                         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
                         introImg.startAnimation(animation);
-                        txtTalk.setText("내일 어떻게 화장을 할까?");
+                        txtTalk.setText("음.. 내일 화장을 어떻게 하지?");
                         break;
 
                     case 2:
                         mediaPlayer1.start();
-                        txtTalk.setText("화장 해봐야지~");
+                        txtTalk.setText("미리 연습을 해봐야지!");
                         introImg.setImageResource(R.drawable.intro2); //전구 이미지
                         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
                         introImg.startAnimation(animation);
@@ -118,7 +122,7 @@ public class IntroActivity extends AppCompatActivity {
 
                     case 6:
                         mediaPlayer1.start();
-                        txtTalk.setText("맞아 나에겐 컬러럽이 있지!");
+                        txtTalk.setText("맞아 내겐 컬러럽이 있지!");
                         introImg.setImageResource(R.drawable.intro6);
                         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
                         introImg.startAnimation(animation);
@@ -129,10 +133,69 @@ public class IntroActivity extends AppCompatActivity {
                         txtTalk.setVisibility(View.INVISIBLE);
                         introImg.setVisibility(View.INVISIBLE);
                         btnNext.setVisibility(View.INVISIBLE);
-                        txtDesc1.setVisibility(View.VISIBLE);
-                        txtDesc2.setVisibility(View.VISIBLE);
-                        txtDesc3.setVisibility(View.VISIBLE);
-                        btnStart.setVisibility(View.VISIBLE);
+
+
+                        new Handler().postDelayed(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                txtDesc1.setVisibility(View.VISIBLE);
+                                txtAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                                txtDesc1.startAnimation(txtAnimation);
+
+                                new Handler().postDelayed(new Runnable()
+                                {
+                                    @Override
+                                    public void run()
+                                    {
+                                        txtDesc2.setVisibility(View.VISIBLE);
+                                        txtAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                                        txtDesc2.startAnimation(txtAnimation);
+                                        new Handler().postDelayed(new Runnable()
+                                        {
+                                            @Override
+                                            public void run()
+                                            {
+                                                txtDesc3.setVisibility(View.VISIBLE);
+                                                txtAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                                                txtDesc3.startAnimation(txtAnimation);
+                                                new Handler().postDelayed(new Runnable()
+                                                {
+                                                    @Override
+                                                    public void run()
+                                                    {
+                                                        txtDesc4.setVisibility(View.VISIBLE);
+                                                        txtAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                                                        txtDesc4.startAnimation(txtAnimation);
+                                                        new Handler().postDelayed(new Runnable()
+                                                        {
+                                                            @Override
+                                                            public void run()
+                                                            {
+                                                                animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
+                                                                heartImg.startAnimation(animation);
+                                                                heartImg.setVisibility(View.VISIBLE);
+                                                                btnStart.setVisibility(View.VISIBLE);
+                                                                txtDesc5.setVisibility(View.VISIBLE);
+                                                                txtAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                                                                txtDesc5.startAnimation(txtAnimation);
+
+                                                            }
+                                                        }, 800);
+
+                                                    }
+                                                }, 800);
+                                            }
+                                        }, 800);
+
+                                    }
+                                }, 800);
+
+                            }
+                        }, 800);
+
+
 
                         break;
                 }
