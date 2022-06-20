@@ -83,7 +83,8 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     String[] WarmName = {"사랑스러운 봄라이트", "생기 있는 봄브라이트", "내추럴한 가을 뮤트", "고급스러운 가을 스트롱", "섹시한 가을딥"};
     String[] CoolName = {"싱그러운 여름라이트", "소프트한 여름뮤트", "청량가득한 여름브라이트", "부드러운 저명도여름뮤트", "시크한 겨울트루", "시원한 겨울브라이트", "도도한 겨울딥"};
 
-
+    String[] Warmment = {"봄라이트", "봄브라이트", "가을뮤트", "가을스트롱", "가을딥"};
+    String[] Coolment = {"여름라이트", "여름뮤트", "여름브라이트", "저명도여름뮤트", "겨울트루", "겨울브라이트", "겨울딥"};
 
 
 
@@ -176,7 +177,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
         }
 
         if (Warm > Cool) {
-           ment="현재 웜에 가까워요!";
+            ment="현재 웜에 가까워요!";
         } else if(Warm<Cool) {
             ment = "현재 쿨에 가까워요!";
         }
@@ -243,21 +244,21 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
 
     public void SecondWarmTest1() {
 
-
+        ment2="현재 "+Warmment[btnCount1]+"에 가까워요";
         warmCount[btnCount1]++;
         count++;
         txtCount.setText(count + "/10");
 
-            backcolor1.setBackgroundColor(Color.parseColor(WarmColor[cnt]));
-            backcolor2.setBackgroundColor(Color.parseColor(WarmColor[cnt + 1]));
-            cnt += 2;
+        backcolor1.setBackgroundColor(Color.parseColor(WarmColor[cnt]));
+        backcolor2.setBackgroundColor(Color.parseColor(WarmColor[cnt + 1]));
+        cnt += 2;
 
-            btnCount1 += 2;
-            if (btnCount1 == 6) {
-                btnCount1 = 1;
-            } else if (btnCount1 == 5) {
-                btnCount1 = 0;
-            }
+        btnCount1 += 2;
+        if (btnCount1 == 6) {
+            btnCount1 = 1;
+        } else if (btnCount1 == 5) {
+            btnCount1 = 0;
+        }
 
         if (WarmColor.length <= cnt) {
             warmCount[btnCount1]++;
@@ -274,6 +275,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void SecondWarmTest2() {
+        ment2="현재 "+Warmment[btnCount2]+"에 가까워요";
         warmCount[btnCount2]++;
         count++;
         txtCount.setText(count+"/10");
@@ -309,6 +311,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void SecondCoolTest1() {
+        ment2="현재 "+Coolment[btnCount1]+"에 가까워요";
         coolCount[btnCount1]++;
         count++;
         txtCount.setText(count+"/14");
@@ -350,6 +353,7 @@ public class CameraActivity extends BaseActivity implements SurfaceHolder.Callba
     }
 
     public void SecondCoolTest2() {
+        ment2="현재 "+Coolment[btnCount2]+"에 가까워요";
         coolCount[btnCount2]++;
         count++;
         txtCount.setText(count+"/14");
