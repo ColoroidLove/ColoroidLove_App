@@ -26,7 +26,7 @@ public class ResultActivity  extends BaseActivity {
     int index;
 
     // 결과 프로필 배열
-    Integer[] resultWarmImg = {R.drawable.result_springlight, R.drawable.result_springlight,
+    Integer[] resultWarmImg = {R.drawable.result_springlight, R.drawable.result_springbright,
             R.drawable.result_fallmute, R.drawable.result_fallstrong, R.drawable.result_falldeep}; // 웜 결과 이미지
     Integer[] resultCoolImg = {R.drawable.result_summerlight, R.drawable.result_summermute, R.drawable.result_summerbright, R.drawable.result_summerlowbrightmute,
             R.drawable.result_wintertrue,   R.drawable.result_winterbright,  R.drawable.result_winterdeep}; // 쿨 결과 이미지
@@ -150,7 +150,7 @@ public class ResultActivity  extends BaseActivity {
             res_color.setText("추천 컬러 : " + CoolColor[index]);
         }
 
-        insertStudent();
+        insertStudent(base, index);
 
         //테스트 종료
         btnEnd.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +163,7 @@ public class ResultActivity  extends BaseActivity {
     }
 
 
-    void insertStudent(){
+    void insertStudent(int base, int index){
         //Dbhelper의 쓰기모드 객체를 가져옴
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
@@ -171,7 +171,8 @@ public class ResultActivity  extends BaseActivity {
         System.out.println(base);
         // profile 랜덤
         //"INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('황수고', '겨울트루', 1, 4, 2)";
-        String qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('"+nickname+"', '" + personal + "', " + 1 + ", " + index + ", " + 3 + ")";
+        String qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('"+nickname+"', '" + personal + "', " + base + ", " + index + ", " + 0 + ")";
+        System.out.println("nickname : " + nickname + ", personal : " + personal + ", base : " + base + ", index : " + index);
         database.execSQL(qry); //만들어준 쿼리문 실행
     }
 }

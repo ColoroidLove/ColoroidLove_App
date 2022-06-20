@@ -69,9 +69,6 @@ public class ListViewAdapter extends BaseAdapter {
         tvName.setText(listdata.getName());
         tvResult.setText(listdata.getResult());
 
-
-
-
         if(listdata.getBase()==0){
             String s = "id : " + listdata.getId() + ", name : "+ listdata.getName() + "base : " + listdata.getBase() + ", polarImg : " + listdata.getPolarImg();
             Log.d("", s);

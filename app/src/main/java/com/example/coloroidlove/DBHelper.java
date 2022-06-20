@@ -25,13 +25,13 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(qry);
 
         //없으면 썰렁하니 아무 데이터라도 넣어주기
-
+/*
         qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('황수고', '겨울트루', 1, 4, 2)";
         sqLiteDatabase.execSQL(qry);
         qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('김영우', '겨울딥', 1, 6, 0)";
         sqLiteDatabase.execSQL(qry);
         qry = "INSERT INTO usersTB(name, result, base, polarImg, profileImg) VALUES('양정원', '겨울브라이트', 1, 5, 3)";
-        sqLiteDatabase.execSQL(qry);
+        sqLiteDatabase.execSQL(qry);*/
 
     }
 

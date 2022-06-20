@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
         btn_start = findViewById(R.id.btn_start);
 
         displayList();
-
+        //Drop(this);
 
         dilaog01 = new Dialog(MainActivity.this);       // Dialog 초기화
         dilaog01.requestWindowFeature(Window.FEATURE_NO_TITLE); // 타이틀 제거
